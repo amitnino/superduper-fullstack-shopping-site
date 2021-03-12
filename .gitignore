@@ -36,10 +36,10 @@ client/*.sublime-workspace
 
 # IDE - VSCode
 client/.vscode/*
-!client/.vscode/settings.json
-!client/.vscode/tasks.json
-!client/.vscode/launch.json
-!client/.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 client/.history/*
 
 # misc
