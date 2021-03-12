@@ -1,0 +1,20 @@
+:host{
+
+    width: 100%;
+
+}
+
+mat-horizontal-stepper{
+
+    width: 60%;
+    min-width: 350px;
+    margin: auto;
+
+}
+
+mat-step{
+
+    width: 90%;
+    margin: auto;
+
+}

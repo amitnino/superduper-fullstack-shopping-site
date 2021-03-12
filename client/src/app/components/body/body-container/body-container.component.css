@@ -1,0 +1,18 @@
+mat-sidenav{
+    padding: 16px;
+    width: 30%;
+}
+
+mat-sidenav-container{
+    /* BIG SCREEN */
+    height: calc( 100% - 81px ); 
+    /* SMALL SCREEN */
+    /* height: calc( 100% - 57px );  */
+    overflow: hidden;
+    /* overflow-x: hidden; */
+    /* overflow-y: auto; */
+}
+
+.main-container{
+    position: relative;
+}

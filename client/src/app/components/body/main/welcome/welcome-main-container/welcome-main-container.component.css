@@ -1,0 +1,23 @@
+:host{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+    min-height: 100%;
+    width: 100%;
+}
+
+app-about-us{
+    width: 40%;
+    max-width: 550px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+app-statistics{
+    width: 40%;
+    max-width: 550px;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -1,0 +1,8 @@
+<mat-sidenav-container class="default">
+  <mat-sidenav mode="side" class="min-height" *ngIf="!_sn.isSideNavHidden()" [(opened)]="_sn.opened">
+    <app-side-bar-container class="min-height" ></app-side-bar-container>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-main-container class="min-height main-container default-flex flex-column flex-center" ></app-main-container>
+  </mat-sidenav-content>
+</mat-sidenav-container>

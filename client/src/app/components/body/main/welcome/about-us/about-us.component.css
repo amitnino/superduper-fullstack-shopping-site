@@ -1,0 +1,9 @@
+.about-us-container{
+    width:80%;
+    min-width: 375px;
+    margin: auto;
+}
+
+p{
+    text-align: center;
+}

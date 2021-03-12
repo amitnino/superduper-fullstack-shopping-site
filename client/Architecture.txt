@@ -1,0 +1,231 @@
+Routes:
+
+    components at all times:
+
+        - Header => UserHandler, Title, Buttons
+
+    ### path: /welcome/
+
+        - Authorization => Login( !isLoggedIn ), Buttons
+
+        - Welcome
+
+        - Statistics => Website, User( isLoggedIn )
+
+    ### path: /register 
+
+        - Register
+
+    ### path: /shop/
+
+            - Sidebar => Header, Body, Info, Buttons
+
+            - Main => FilterBar, Body
+
+    ### path: /order/
+
+        1. path: /
+
+            - Sidebar => Header, Body, Info
+
+            - Main => Search, Form
+
+        2. path: /download
+
+            - Download
+
+
+Components:
+
+    Register:
+
+        1. path: /register/
+
+            - LoginInfoForm
+            - PersonalInfoForm( only after LoginInfoForm is validated )
+    
+    Header:
+
+        1. path: /welcome/
+
+            - Title
+
+        2. path: /shop/
+        3. path: /order/
+
+            - UserHandler => Logo, user.fullName, LogOutBtn
+            - Title
+            - Buttons => HomeBtn, AboutUs
+
+    Sidebar:
+
+        1. path: /welcome/
+
+            - !isLoggedIn: Authorization
+
+                - LoginForm
+                - LoginBtn
+                - RegisterBtn
+
+            - isLoggedIn: DisplayUser
+
+                - UserInformation
+                - StartBtn
+                - LogOutBtn
+
+        2. path: /shop/
+
+            - SideBarHeader
+            - CartList => CartItem => item info, IncrementBtn, DecrementBtn, RemoveItemBtn
+            - CartInfo => cart information
+            - CartBtns => EmptyCartBtn, OrderBtn
+
+        3. path: /order/
+
+            - SideBarHeader
+            - SearchBar
+            - CartList => CartItem => item info
+            - CartInfo => cart information
+
+    Main: 
+
+        1. path: /welcome/
+
+            - AboutUs
+            - Statistics
+
+        2. path: /shop/
+            
+            - FilterBar =>
+
+                - CategoriesBtn
+                - SearchBtn
+
+            - Shop =>
+
+                - StoreItemsList => StoreItem => item info, AddToCartBtn
+
+        3. path: /order/
+
+            - path: / => OrderForm, OrderBtn
+            - path: /download => DownloadOrderBtn(to: /welcome/)
+
+Services:
+
+    - UserApi =>
+
+        - loginApi()
+        - registerApi()
+        - validateRegisterFormApi()
+
+    - User => 
+
+        - loginUser()
+        - registerUser()
+        - validateRegisterForm()
+
+        - user = UserInterface{}
+    
+    - StoreApi =>
+
+        - getItemsAndCategoriesApi()
+        - getItemByIdApi()
+        - getItemsByCategoryApi()
+        - getItemsBySearchApi()
+        - addItemToStoreApi()
+        - editItemInStoreApi()
+
+    - Store => 
+
+        - getItemsAndCategories()
+        - getItemById()
+        - getItemsByCategory()
+        - getItemsBySearch()
+        - updateStoreState()
+
+        - store = StoreInterface{}
+
+    - CartApi =>
+
+        - createNewCartApi()
+        - getCartApi()
+        - addItemToCartApi()
+        - editItemAmountApi()
+        - removeItemFromCartApi()
+        - emptyCartApi()
+
+    - Cart =>
+
+        - getCart()
+        - addItemToCart()
+        - editItemAmount()
+        - removeItemFromCart()
+        - emptyCart()
+        - updateCartState()
+
+        - cart = CartInterface{}
+
+    - OrderApi =>
+
+        - getAllOrdersApi()
+        - getOrdersByUserIdApi()
+        - createNewOrderApi()
+
+        - orders = OrderInterface[]
+
+Classes:
+
+Interfaces:
+
+    - User{
+        _id: string,
+        username: string,
+        fullName: string,
+        isAdmin: boolean,
+        city: string,
+        street: string,
+        orders: OrderInterface[]
+    }
+
+    - Cart{
+        _id: string,
+        totalPrice: number,
+        isActive: boolean,
+        cartItems: CartItemInterface[]
+    }
+
+    - CartItem{
+        _id: string,
+        totalPrice: number,
+        amount: number,
+        storeItem: StoreItemInterface
+    }
+
+    - StoreItem{
+        _id: string,
+        name: string,
+        price: number,
+        picture: string,
+        categoryId: string
+    }
+
+    - StoreCategory{
+        _id: string,
+        name: string
+    }
+
+    - ApiResponse{
+        err: boolean,
+        msg: string
+    }
+
+    - Order{
+        _id: string,
+        city: string,
+        street: string,
+        delieveryDate: Date,
+        creditCard: number
+    }
+
+Steps:
+

@@ -1,0 +1,22 @@
+.small-text-container{
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.numbers-container{
+    width:20%;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-container{
+    width:70%;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.width{
+    width: 80%;
+    max-width: 280px;
+}

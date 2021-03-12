@@ -1,0 +1,43 @@
+<form class="max-width default-flex flex-around" [formGroup]="loginInfoForm">
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username" placeholder="BeerMan1000@Brewery.com">
+      <mat-icon matSuffix>perm_identity</mat-icon>
+      <mat-error *ngIf="usernameControl.hasError('email') && usernameControl.dirty"> <strong>Must Be an Email
+          Adress</strong> </mat-error>
+      <mat-error *ngIf="usernameControl.hasError('required')"> <strong>Required</strong> </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Israeli Id</mat-label>
+      <input matInput formControlName="israeliId" placeholder="BeerMan1000@Brewery.com">
+      <mat-icon matSuffix>perm_identity</mat-icon>
+      <mat-error *ngIf="israeliIdControl.hasError('israeli-id') && israeliIdControl.dirty"> <strong>Israeli Id is
+          Invalid</strong> </mat-error>
+      <mat-error *ngIf="israeliIdControl.hasError('required')"> <strong>Required</strong> </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" placeholder="BeerMan'sSecrets123">
+      <mat-icon matSuffix>password</mat-icon>
+      <mat-error *ngIf="passwordControl.hasError('minlength') && passwordControl.dirty"> <strong>Must Be At least 5
+          Digits</strong> </mat-error>
+      <mat-error *ngIf="passwordControl.hasError('required')"> <strong>Required</strong> </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Confirm Password</mat-label>
+      <input matInput formControlName="confirmPassword" placeholder="BeerMan'sSecrets123">
+      <mat-icon matSuffix>done_all</mat-icon>
+      <mat-error *ngIf="confirmPasswordControl.hasError('no-match') && confirmPasswordControl.dirty"> <strong>Passwords
+          Do Not Match</strong> </mat-error>
+      <mat-error *ngIf="confirmPasswordControl.hasError('required')"> <strong>Required</strong> </mat-error>
+    </mat-form-field>
+  </p>
+</form>
+<button mat-button (click)="setFirstStepToCompleted()">activateNextStep</button>
