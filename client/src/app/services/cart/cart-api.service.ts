@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api/api.service';
-import { ApiResponseInterface } from 'src/app/interfaces/api-response-interface';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,49 +9,43 @@ export class CartApiService {
   constructor(
     private _api: ApiService,
 
-  ) { }
+  ) { };
 
-  private url = 'carts/'
+  private url = 'carts/';
 
-  public createNewCartToApi = (): Promise<any> => {
+  public createNewCartToApi = async (): Promise<any> => {
 
-    return new Promise((resolve) => {
+    return await this._api.defaultApiResponseHandler(this._api.get(this.url + 'new'))
 
-      this._api.get( this.url + 'new' ).subscribe(
-
-        (response: ApiResponseInterface) => {
-
-          resolve(response);
-
-        },
-
-        (error: HttpErrorResponse) => {
-
-          resolve(error.error);
-
-        }
-      );
-    });
   };
 
-  public getOpenCartByUserIdFromApi = (): Promise<any> => {
+  public getOpenCartByUserIdFromApi = async (): Promise<any> => {
 
-    return new Promise((resolve) => {
+    return await this._api.defaultApiResponseHandler(this._api.get(this.url + 'open'));
 
-      this._api.get( this.url + 'open' ).subscribe(
+  };
 
-        (response: ApiResponseInterface) => {
+  public addItemToCartToApi = async (body: any): Promise<any> => {
 
-          resolve(response);
+    return await this._api.defaultApiResponseHandler(this._api.post(this.url + 'add', body));
 
-        },
+  };
 
-        (error: HttpErrorResponse) => {
+  public editItemAmountToApi = async (body: any): Promise<any> => {
 
-          resolve(error.error);
+    return await this._api.defaultApiResponseHandler(this._api.post(this.url + 'edit', body));
 
-        }
-      );
-    });
+  };
+
+  public removeItemFromCartToApi = async (cartItemId: string): Promise<any> => {
+
+    return await this._api.defaultApiResponseHandler(this._api.delete(this.url + 'remove/' + cartItemId))
+
+  };
+
+  public resetCartToApi = async (): Promise<any> => {
+
+    return await this._api.defaultApiResponseHandler(this._api.delete(this.url));
+
   };
 };

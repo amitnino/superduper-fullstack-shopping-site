@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
+import { CartApiBodyRequestInterface } from 'src/app/interfaces/cart-api-body-request-interface';
 import { CartInterface } from 'src/app/interfaces/cart-interface';
-import { UserService } from '../user/user.service';
 import { CartApiService } from './cart-api.service';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class CartService implements OnInit {
   }
   
   public cart: CartInterface;
-
+  
   public initialCart: CartInterface = {
     _id: undefined,
     userId: undefined,
@@ -27,42 +27,67 @@ export class CartService implements OnInit {
     updatedAt: undefined,
     cartItems: []
   };
-
-  public createNewCart = async (): Promise<void> => {
-
-    const response = await this._cartApiService.createNewCartToApi();
-
-    if ( response.err ) return console.log(response.msg);
-
-    this.updateCartState(response.cart);
-
-  };
-
-  public getOpenCartByUserID = async (): Promise<void> => {
-
-    const response = await this._cartApiService.getOpenCartByUserIdFromApi();
-
-    if ( response.err ) {
-
-      console.log(response.msg);
-      this.createNewCart();
-      return ;
-
-    };
-
-    this.updateCartState(response.cart);
-
-  };
-
+  
   public updateCartState = (cart: CartInterface): void => {
 
     this.cart = {...cart};
 
-  }
+  };
+
+  public defaultCartApiResponseHandler = async (apiResponse: Promise<any>): Promise<void> => {
+
+    const response = await apiResponse;
+
+    if ( response.err ) return console.log(response.msg);
+    
+    this.updateCartState(response.cart);
+    
+  };
   
-  // - addItemToCart()
-  // - editItemAmount()
-  // - removeItemFromCart()
-  // - emptyCart()
-  // - updateCartState()
-}
+  public createNewCart = async (): Promise<void> => {
+    
+    await this.defaultCartApiResponseHandler(this._cartApiService.createNewCartToApi());
+    
+  };
+  
+  public getOpenCartByUserID = async (): Promise<void> => {
+    
+    const response = await this._cartApiService.getOpenCartByUserIdFromApi();
+    
+    if ( response.err ) {
+      
+      console.log(response.msg);
+      this.createNewCart();
+      return;
+      
+    };
+    
+    this.updateCartState(response.cart);
+    
+  };
+  
+  public addItemToCart = async ( body: CartApiBodyRequestInterface ): Promise<void> => {
+
+    await this.defaultCartApiResponseHandler(this._cartApiService.addItemToCartToApi(body));
+
+  };
+
+  public editItemAmount = async ( body: CartApiBodyRequestInterface ): Promise<void> => {
+
+    await this.defaultCartApiResponseHandler(this._cartApiService.editItemAmountToApi(body));
+    
+  };
+  
+  public removeItemFromCart = async (cartItemId: string): Promise<void> => {
+    
+    await this.defaultCartApiResponseHandler(this._cartApiService.removeItemFromCartToApi(cartItemId));
+
+  };
+
+  public resetCart = async (): Promise<any> => {
+
+    await this.defaultCartApiResponseHandler(this._cartApiService.resetCartToApi());
+
+  };
+
+};

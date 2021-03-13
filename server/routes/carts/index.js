@@ -175,7 +175,7 @@ router.delete('/reset', async (req, res) => {
 
     } catch (error) {
 
-        defaultErrorResponse(res, error)
+        defaultErrorResponse(res, error);
 
         return;
 

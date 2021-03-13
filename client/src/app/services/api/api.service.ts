@@ -1,6 +1,7 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
+import { ApiResponseInterface } from "src/app/interfaces/api-response-interface";
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +54,27 @@ export class ApiService {
 
     return this.http.delete(requestUrl, this.getHttpOptions());
 
+  };
+
+  public defaultApiResponseHandler = (apiResponse: Observable<Object>): Promise<any> => {
+
+    return new Promise((resolve, reject) => {
+
+      apiResponse.subscribe(
+
+        (response: ApiResponseInterface) => {
+          
+          resolve(response);
+
+        },
+
+        (error: HttpErrorResponse) => {
+
+          reject(error.error);
+
+        }
+      );
+    });
   };
 
 };
