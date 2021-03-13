@@ -1,2 +1,1 @@
-<p>cart-list works!</p>
-<app-cart-item></app-cart-item>
+<app-cart-item *ngFor="let i of _cartService.cart.cartItems" [cartItem]="i" ></app-cart-item>

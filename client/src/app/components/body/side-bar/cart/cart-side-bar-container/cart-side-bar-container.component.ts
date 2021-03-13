@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-cart-side-bar-container',
@@ -9,10 +10,14 @@ import { Router } from '@angular/router';
 export class CartSideBarContainerComponent implements OnInit {
 
   constructor(
-    public router: Router
+    public router: Router,
+    public _cartService: CartService,
+
   ) { }
 
   ngOnInit(): void {
   }
+
+  
 
 }

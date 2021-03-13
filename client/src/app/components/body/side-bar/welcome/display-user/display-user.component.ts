@@ -27,7 +27,13 @@ export class DisplayUserComponent implements OnInit {
 
   public startShoppingButtonClick = () => {
 
-    this._cartService.createNewCart();
+
+    if ( !this._cartService.cart._id ) {
+
+      this._cartService.createNewCart();
+
+    };
+    
     this.router.navigateByUrl('/shop');
 
   };

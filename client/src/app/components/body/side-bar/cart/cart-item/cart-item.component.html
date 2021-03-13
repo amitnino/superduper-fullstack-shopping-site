@@ -1,1 +1,10 @@
-<p>cart-item works!</p>
+<mat-card class="default-flex flex-around max-width mb-1">
+    <mat-card-title-group>
+        <img mat-card-sm-image src="cartItem.storeItem.picture" />
+        <p>{{cartItem.storeItem.picture}}</p>
+        <mat-card-title>Item Name: {{cartItem.storeItem.name}}</mat-card-title>
+        <mat-card-title>Price per: {{cartItem.storeItem.price}}</mat-card-title>
+        <mat-card-subtitle>Amount: {{cartItem.amount}}</mat-card-subtitle>
+        <mat-card-subtitle>Total Price: ${{cartItem.totalPrice}}</mat-card-subtitle>
+    </mat-card-title-group>
+</mat-card>
