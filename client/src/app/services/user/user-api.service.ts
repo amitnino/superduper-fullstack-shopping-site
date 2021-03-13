@@ -12,6 +12,7 @@ export class UserApiService {
 
   constructor(
     private _api: ApiService,
+
   ) { };
 
   private url = 'auth/';
@@ -52,12 +53,14 @@ export class UserApiService {
 
           // TODO create error handler
           if (response.err) {
+
             resolve(response);
+
           };
 
-          localStorage.setItem('token', JSON.stringify(response.loginToken));
+          localStorage.setItem('token', response.loginToken);
 
-          resolve(this.getUserFromToken(response.loginToken));
+          resolve(response);
 
         },
 
@@ -84,39 +87,31 @@ export class UserApiService {
         },
 
         async (error: HttpErrorResponse) => {
-          
+
           resolve(error.error);
-          
-        }
 
-        )
-        
-        
-      });
-      
-    };
-    
-    public registerUserToApi = (body: Object): Promise<any> => {
-      
-      return new Promise ((resolve)=>{
-        
-        this._api.post(this.url + 'register', body).subscribe(
-          
-          async (response: ApiResponseInterface) =>{
-
-            resolve(response);
-
-          },
-          
-          async (error: HttpErrorResponse) => {
-      
-            resolve(error.error);
-      
-          }
-      );
-
+        })
     });
-
   };
 
+  public registerUserToApi = (body: Object): Promise<any> => {
+
+    return new Promise((resolve) => {
+
+      this._api.post(this.url + 'register', body).subscribe(
+
+        async (response: ApiResponseInterface) => {
+
+          resolve(response);
+
+        },
+
+        async (error: HttpErrorResponse) => {
+
+          resolve(error.error);
+
+        }
+      );
+    });
+  };
 };

@@ -37,12 +37,12 @@ module.exports.defaultCartResponse = (res, cart, msg) => {
 
 module.exports.generateLoginToken = ( payload, secret ) => {
 
-    return jwt.sign(payload, secret, { expiresIn: '30min' });
+    return jwt.sign(payload, secret, { expiresIn: '1h' });
 
 };
 
 module.exports.generateRefreshToken = ( payload, secret ) => {
 
-    return jwt.sign(payload, secret, { expiresIn: '1day' });
+    return jwt.sign(payload, secret, { expiresIn: '1 days' });
 
 };

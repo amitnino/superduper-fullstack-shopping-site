@@ -9,9 +9,11 @@ const {
     REFRESH_TOKEN
 } = process.env;
 
+const secret = LOGIN_TOKEN
+
 module.exports.validateToken = async (req, res, next) => {
 
-    jwt.verify(req.headers.authorization, LOGIN_TOKEN, (err, decoded) => {
+    jwt.verify(req.headers['authorization'], secret, (err, decoded) => {
 
         if ( err ) {
     

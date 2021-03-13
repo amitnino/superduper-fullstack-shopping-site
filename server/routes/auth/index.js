@@ -152,11 +152,11 @@ router.post('/login', async (req, res) => {
             return;
 
         };
-
-        const orders = await Order.find({userId: user._id});
-
+        
         const { _id, firstName, lastName, city, street, isAdmin } = user;
         const fullName = firstName + ' ' + lastName;
+        
+        const orders = await Order.find({userId: _id}).populate(USERID);
 
         const loginTokenData = {
 
@@ -186,11 +186,6 @@ router.post('/login', async (req, res) => {
         if ( !isAdmin ) {
 
             response.cart = await Cart.findOne({ userId: _id, isActive: true });
-            response.orders = await Order.find({ userId: _id }).populate(USERID);
-
-        }else{
-
-            response.orders = await Order.find().populate(USERID);
 
         };
 

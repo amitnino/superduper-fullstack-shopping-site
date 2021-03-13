@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { UserApiService } from './user-api.service';
 import { UserInterface } from './../../interfaces/user-interface';
+import { CartService } from '../cart/cart.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,8 @@ export class UserService implements OnInit {
 
   constructor(
     private _userApiService: UserApiService,
+    private _cartService: CartService,
+
   ) { }
 
   public isLoggedIn: boolean = false;
@@ -24,29 +27,30 @@ export class UserService implements OnInit {
     orders: undefined
 
   }
-  
+
 
   ngOnInit(): void {
   }
 
-  public logout = (): void =>  {
-    
+  public logout = (): void => {
+
     this.user = this.initialUser;
     this.isLoggedIn = false;
     localStorage.removeItem('token');
 
   };
 
-  public getUserFromLocalStorage = ():void => {
+  public getUserFromLocalStorage = (): void => {
 
     if (!localStorage.getItem('token')) {
 
       this.logout();
 
     };
-    
+
     this.user = this._userApiService.getUserFromToken(localStorage.getItem('token'));
     this.isLoggedIn = true;
+    this._cartService.getOpenCartByUserID();
 
   };
 
@@ -58,13 +62,15 @@ export class UserService implements OnInit {
     if (response.err) return console.log(response.msg);
     // handleError() TODO
 
-    this.user = response;
+    this.user = this._userApiService.getUserFromToken(response.loginToken)
+
+    this._cartService.updateCartState(response.cart);
 
     this.isLoggedIn = true;
 
   };
 
-  public validateRegisterForm = async (body: {israeliId: string, username: string}) => {
+  public validateRegisterForm = async (body: { israeliId: string, username: string }) => {
 
     return await this._userApiService.validateRegisterFormToApi(body);
 
