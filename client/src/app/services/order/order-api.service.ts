@@ -6,6 +6,23 @@ import { OrderInterface } from 'src/app/interfaces/order-interface';
 })
 export class OrderApiService {
 
+  public cityList = [
+
+    'Jerusalem',
+    'Tel Aviv',
+    'Haifa',
+    'Ashdod',
+    'Rishon LeZiyon',
+    'Petah Tikva',
+    'Beersheba',
+    'Netanya',
+    'Holon',
+    'Bnei Brak',
+    'Rehovot',
+    'Bat Yam'
+
+  ]
+
   constructor() { }
 
   // - getAllOrdersApi()

@@ -11,10 +11,9 @@ import { UserService } from 'src/app/services/user/user.service';
 export class DisplayUserComponent implements OnInit {
 
   constructor(
-    public _us: UserService,
-    public _cs: CartService,
+    public _userService: UserService,
+    public _cartService: CartService,
     public router: Router,
-    
   ) { };
 
   ngOnInit(): void {
@@ -22,7 +21,7 @@ export class DisplayUserComponent implements OnInit {
 
   public logOutButtonClick = () => {
 
-    this._us.isLoggedIn = false;
+    this._userService.logout();
 
   };
 

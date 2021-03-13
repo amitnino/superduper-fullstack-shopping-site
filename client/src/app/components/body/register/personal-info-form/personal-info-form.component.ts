@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MatHorizontalStepper } from '@angular/material/stepper';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { OrderApiService } from 'src/app/services/order/order-api.service';
 
 @Component({
   selector: 'app-personal-info-form',
@@ -9,12 +10,56 @@ import { MatHorizontalStepper } from '@angular/material/stepper';
 export class PersonalInfoFormComponent implements OnInit {
 
   @Input()
-  setSecondStepToCompleted;
+  nextStepFn: any;
 
-  constructor() { }
+  public personalInfoForm: FormGroup;
 
-  ngOnInit(): void {
+  constructor(
+    public fb: FormBuilder,
+    public _orderApiService: OrderApiService,
     
+  ) { }
+
+  ngOnInit(): void { 
+    this.personalInfoForm = this.fb.group({
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      city: ['', [Validators.required]],
+      street: [{value:'', disabled: true}, [Validators.required]],
+    })
+  }
+
+  public enableStreetInputOnCitySelection = () => {
+
+    this.cityControl.invalid ? this.streetControl.disable() : this.streetControl.enable();
+  
+  }
+
+  get firstNameControl() {
+    return this.personalInfoForm.controls['firstName'];
+  }
+  get lastNameControl() {
+    return this.personalInfoForm.controls['lastName'];
+  }
+  get cityControl() {
+    return this.personalInfoForm.controls['city'];
+  }
+  get streetControl() {
+    return this.personalInfoForm.controls['street'];  
+  }
+
+  public validateFormButton = async (): Promise<void> => {
+
+    if (this.personalInfoForm.invalid) {
+
+      console.log('Form is invalid');
+      
+      return;
+
+    }
+
+    this.nextStepFn(this.personalInfoForm.value);
+
   }
 
 }

@@ -1,15 +1,14 @@
 <mat-horizontal-stepper [linear]="true" #stepper>
   <mat-step label="Login Information" [editable]="false" [completed]="firstStepValid">
-    <app-login-info-form [setFirstStepToCompleted]="setFirstStepToCompleted"></app-login-info-form>
-    <button mat-button [disabled]="!firstStepValid" (click)="nextStep()" >Next</button>
+    <app-login-info-form [nextStepFn]="nextStepFn"></app-login-info-form>
   </mat-step>
   <mat-step label="Personal Information" [editable]="false" [completed]="secondStepValid">
-    <app-personal-info-form [setSecondStepToCompleted]="setSecondStepToCompleted"></app-personal-info-form>
-    <button mat-button [disabled]="!secondStepValid" (click)="nextStep()" >Next</button>
+    <app-personal-info-form [nextStepFn]="nextStepFn"></app-personal-info-form>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-      <button mat-button (click)="router.navigateByUrl('/welcome')">Login</button>
+    <p>{{thirdStepMessage}}</p>
+      <button mat-button *ngIf="!registrationSuccessful" (click)="resetForm()">Reset</button>
+      <button mat-button *ngIf="registrationSuccessful" (click)="router.navigateByUrl('/welcome')">Login</button>
   </mat-step>
 </mat-horizontal-stepper>

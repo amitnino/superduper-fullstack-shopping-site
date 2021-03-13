@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatStepperModule } from '@angular/material/stepper';
+import {MatSelectModule} from '@angular/material/select';
 
 const material = [
   MatButtonModule,
@@ -18,6 +19,7 @@ const material = [
   MatInputModule,
   MatDividerModule,
   MatStepperModule,
+  MatSelectModule,
 
 ];
 

@@ -1,1 +1,44 @@
-<button mat-button (click)="setSecondStepToCompleted()" >activateNextStep</button>
+<form class="max-width default-flex flex-around" [formGroup]="personalInfoForm">
+  <div class="name min-width default-flex flex-column flex-center">
+    <p class="mat-title">What is Your Name?</p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" placeholder="Johnny">
+        <mat-icon matSuffix>perm_identity</mat-icon>
+        <mat-error *ngIf="firstNameControl.hasError('required')"> <strong>Required</strong> </mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" placeholder="Brewerman">
+        <mat-icon matSuffix>perm_identity</mat-icon>
+        <mat-error *ngIf="lastNameControl.hasError('required')"> <strong>Required</strong> </mat-error>
+      </mat-form-field>
+    </p>
+  </div>
+  <div class="location min-width default-flex flex-column flex-center">
+    <p class="mat-title">Where In Israel do you live?</p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>City</mat-label>
+        <mat-select formControlName="city" (selectionChange)="enableStreetInputOnCitySelection()">
+          <mat-option [value]="''" >None</mat-option>
+          <mat-option *ngFor="let city of _orderApiService.cityList" [value]="city" >{{city}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="cityControl.hasError('required')"> <strong>Required</strong> </mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Street</mat-label>
+        <input matInput formControlName="street" placeholder="247th Beer st">
+        <mat-icon matSuffix>done_all</mat-icon>
+        <mat-error *ngIf="streetControl.hasError('required')"> <strong>Required</strong> </mat-error>
+      </mat-form-field>
+    </p>
+  </div>
+
+</form>
+<button mat-button (click)="validateFormButton()" [disabled]="personalInfoForm.invalid">Next</button>

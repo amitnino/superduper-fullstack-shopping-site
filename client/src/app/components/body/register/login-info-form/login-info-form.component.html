@@ -40,4 +40,6 @@
     </mat-form-field>
   </p>
 </form>
-<button mat-button (click)="setFirstStepToCompleted()">activateNextStep</button>
+<button mat-button (click)="validateFormButton()" [disabled]="loginInfoForm.invalid">Next</button>
+<mat-error *ngIf="usernameOrIsraeliIdTakenValues?.israeliId === israeliIdControl.value || usernameOrIsraeliIdTakenValues?.username === usernameControl.value"> <strong>Username or Israeli Id
+    are Already In use</strong> </mat-error>
