@@ -13,13 +13,13 @@ Api URL: http://localhost:1000/
 
 ------------------------------------------------------------------------
 
-### Authentication :
+# Authentication :
 
 Handles authorization functions.
 
 - path: /auth/
 
-    # Login :
+    ### Login :
         
         Login to get a token and authorization to use the website.
 
@@ -27,7 +27,7 @@ Handles authorization functions.
         - POST: body: {username:string, password:string} 
         - response: {err:boolean, msg:string, refreshToken:string, token:string, cart:{}, orders:[{}] }
 
-    # Register :
+    ### Register :
 
         Handles registration functions
 
@@ -57,7 +57,7 @@ Handles authorization functions.
 
 ------------------------------------------------------------------------
 
-### Store Items :
+# Store Items :
 
 Handles request for store items related functions such as adding item to cart, adding item to store database, complete purchase etc.
 
@@ -87,7 +87,7 @@ Handles request for store items related functions such as adding item to cart, a
             - GET: params: query:string
             - response: { err:boolean, storeItems:[{}] }
 
-    # ADMIN functions:
+    ### ADMIN functions:
 
 	- path: /admin/
 
@@ -106,7 +106,7 @@ Handles request for store items related functions such as adding item to cart, a
                 - response: { err:boolean, msg:string, storeItems:[{}] } // Api sends all store items in response
 
 
-### Cart :
+# Cart :
 
 Handles all cart functions such as adding item to cart, removing item from cart, completing orders etc.
 Once user logs in, if there is an open cart, 
