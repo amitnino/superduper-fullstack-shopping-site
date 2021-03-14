@@ -112,43 +112,44 @@ Handles all cart functions such as adding item to cart, removing item from cart,
 Once user logs in, if there is an open cart, 
 ! All requests in this path return in response the new "state" of the cart from database.
 
+
 - path: /cart/
 
-    1. Create new cart.
+		1. Create new cart.
 
-        - path: /new
-        - GET:
-        - response: { err:boolean, msg:string, cart:[] }
+		- path: /new
+		- GET:
+		- response: { err:boolean, msg:string, cart:[] }
 
-    2. Get open cart
+		2. Get open cart
 
-        - path: /open
-        - GET:
-        - response: { err:boolean, msg:string, cart:[{}] }
+		- path: /open
+		- GET:
+		- response: { err:boolean, msg:string, cart:[{}] }
 
-    3. Add item to cart:
+		3. Add item to cart:
 
-        - path: /add
-        - POST: body:{ storeItemId:string, amount:number }
-        - response: { err:boolean, msg:string, cart:[{}] }
+		- path: /add
+		- POST: body:{ storeItemId:string, amount:number }
+		- response: { err:boolean, msg:string, cart:[{}] }
 
-    4. Edit the amount:
+		4. Edit the amount:
 
-        - path: /amount
-        - POST: body:{ cartItemId:string, amount:number }
-        - response: { err:boolean, msg:string, cart:[{}] }
+		- path: /amount
+		- POST: body:{ cartItemId:string, amount:number }
+		- response: { err:boolean, msg:string, cart:[{}] }
 
-    5. Remove Item from cart:
+		5. Remove Item from cart:
 
-        - path: /remove/:cartItemId
-        - DELETE: params: cartItemId
-        - response: { err:boolean, msg:string, cart:[{}] }
+		- path: /remove/:cartItemId
+		- DELETE: params: cartItemId
+		- response: { err:boolean, msg:string, cart:[{}] }
 
-    6.  Remove all items from cart:
+		6.  Remove all items from cart:
 
-        - path: /reset
-        - DELETE: 
-        - response: { err:boolean, msg:string, cart:[] }
+		- path: /reset
+		- DELETE: 
+		- response: { err:boolean, msg:string, cart:[] }
 
 ### !!TODO!! Order :
 
@@ -157,20 +158,20 @@ in database and is set { isActive: false }.
 
 - path: /order
 
-    1. Create a new order ( sets cart to { isActive: false } ) :
+	    1. Create a new order ( sets cart to { isActive: false } ) :
 
-        - path: /new
-        - POST: body: { cartId:string, city:string, street:string , delieveryDate:date, creditCard:number }
-        - response: { err:boolean, msg:string, order:{} }
+		- path: /new
+		- POST: body: { cartId:string, city:string, street:string , delieveryDate:date, creditCard:number }
+		- response: { err:boolean, msg:string, order:{} }
 
-    2. Get all orders:
+	    2. Get all orders:
 
-        - path: /
-        - GET:
-        - response: { err:boolean, msg:string, orders:[{}] }
+		- path: /
+		- GET:
+		- response: { err:boolean, msg:string, orders:[{}] }
 
-    3. Get Orders By User id:
+	    3. Get Orders By User id:
 
-        - path: /userId/:userId
-        - GET: params: userId
-        - response: { err:boolean, msg:string, orders:[{}] }
+		- path: /userId/:userId
+		- GET: params: userId
+		- response: { err:boolean, msg:string, orders:[{}] }
