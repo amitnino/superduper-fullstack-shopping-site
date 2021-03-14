@@ -2,3 +2,34 @@
     box-shadow: none;
     border: 3px solid black;
 }
+
+/* .img-box{
+
+}
+.thumbnail{
+    width: 80px;
+    height: 84px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 50px;
+}
+
+.cart-item{
+    display: flex;
+    justify-content: space-between;
+   
+}
+
+.text-box{
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+height: 100%;
+width: 50%;
+margin-top: 20px;
+margin-right: 50px;}
+
+.price-box{
+display: flex;
+justify-content: space-between;
+} */

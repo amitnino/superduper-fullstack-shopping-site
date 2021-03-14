@@ -10,9 +10,6 @@ const {
     Cart
 } = require('../../database/schema/carts');
 const {
-    StoreItem
-} = require('../../database/schema/store');
-const {
     getCartByUserId
 } = require('../../database/queries/carts')
 
@@ -33,6 +30,7 @@ router.get('/new', async (req, res) => {
     } catch (error) {
 
         defaultErrorResponse(res, error);
+        console.log(error)
 
         return;
 
@@ -53,6 +51,7 @@ router.get('/open', async (req, res) => {
     } catch (error) {
 
         defaultErrorResponse(res, error);
+        console.log(error)
 
         return;
 
@@ -71,24 +70,23 @@ router.post('/add', async (req, res) => {
 
         const cart = await getCartByUserId(req.user._id);
 
-        const storeItem = await StoreItem.findOne({
-            _id: toObjectId(storeItemId)
-        });
-
         await cart.cartItems.push({
-            storeItem,
+            storeItemId,
             amount
         });
 
         await cart.save();
 
-        defaultCartResponse(res, cart, 'Item added to cart successfully');
+        const newCart = await getCartByUserId(req.user._id);
+
+        defaultCartResponse(res, newCart, 'Item added to cart successfully');
 
         return;
 
     } catch (error) {
 
         defaultErrorResponse(res, error);
+        console.log(error)
 
         return;
 
@@ -122,6 +120,7 @@ router.put('/amount', async (req, res) => {
     } catch (error) {
 
         defaultErrorResponse(res, error);
+        console.log(error)
 
         return;
 
@@ -150,6 +149,7 @@ router.delete('/remove/:cartItemId', async (req, res) => {
     } catch (error) {
 
         defaultErrorResponse(res, error);
+        console.log(error)
 
         return;
 
@@ -176,6 +176,7 @@ router.delete('/reset', async (req, res) => {
     } catch (error) {
 
         defaultErrorResponse(res, error);
+        console.log(error)
 
         return;
 

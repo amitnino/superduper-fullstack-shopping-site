@@ -1,5 +1,5 @@
 const { requiredType, defaultSchemaOptions, Schema, model, toObjectId } = require('../');
-const { storeItemsSchema } = require('../schema/store');
+const { StoreItem } = require('../schema/store');
 const { User } = require('../schema/users');
 
 const totalPriceOptions = {type: Number, default: 0};
@@ -8,13 +8,14 @@ const defaultSchemaOptionsWithTimestamps = {...defaultSchemaOptions, timestamps:
 const cartItemsSchema = new Schema({
     
     amount: requiredType(Number),
-    storeItem: storeItemsSchema,
+    storeItemId: {...requiredType(toObjectId), ref: StoreItem },
     totalPrice: totalPriceOptions
 
 }, defaultSchemaOptionsWithTimestamps );
 
-cartItemsSchema.pre('save', function(){
-    this.totalPrice = this.storeItem.price * this.amount;
+cartItemsSchema.pre('save', async function(){
+    const storeItem = await StoreItem.findById(this.storeItemId);
+    this.totalPrice = storeItem.price * this.amount;
 });
 
 const cartsSchema = new Schema({

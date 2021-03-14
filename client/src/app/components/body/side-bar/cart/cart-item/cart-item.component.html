@@ -1,10 +1,39 @@
 <mat-card class="default-flex flex-around max-width mb-1">
     <mat-card-title-group>
-        <img mat-card-sm-image src="cartItem.storeItem.picture" />
-        <p>{{cartItem.storeItem.picture}}</p>
-        <mat-card-title>Item Name: {{cartItem.storeItem.name}}</mat-card-title>
-        <mat-card-title>Price per: {{cartItem.storeItem.price}}</mat-card-title>
+        <img mat-card-sm-image src="{{cartItem.storeItemId.picture}}" />
+        <mat-card-title>Item Name: {{cartItem.storeItemId.name}}</mat-card-title>
+        <mat-card-title>Price per: {{cartItem.storeItemId.price}}</mat-card-title>
         <mat-card-subtitle>Amount: {{cartItem.amount}}</mat-card-subtitle>
         <mat-card-subtitle>Total Price: ${{cartItem.totalPrice}}</mat-card-subtitle>
     </mat-card-title-group>
 </mat-card>
+
+<!-- <div class="cart-item">
+    <div class="img-box">
+        <img class='thumbnail'src="{{}}" alt="photo of{{}}">
+    </div>
+    <div class="text-box">
+        <p>{{}}</p>
+        <div class="price-box">
+            <p>{{}}</p>
+            <p>{{}}</p>
+        </div>
+       
+    </div>
+</div> -->
+
+<!-- <div class="cart-item" *ngFor='let item of _data.cart'>
+    <div class="img-box">
+        <img class='thumbnail'src="{{item.IMAGE}}" alt="photo of{{item.PRODUCT_NAME}}">
+    </div>
+    <div class="text-box">
+        <p>{{item.PRODUCT_NAME}}</p>
+        <div class="price-box">
+            <p>{{item.QTY}}</p>
+            <p>{{item.PRICE}}</p>
+        </div>
+       
+    </div>
+</div> -->
+
+

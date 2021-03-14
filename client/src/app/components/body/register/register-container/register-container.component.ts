@@ -44,7 +44,15 @@ export class RegisterContainerComponent implements OnInit {
 
       const response = await this._userService.registerUser(this.registerationForm);
 
+      if ( response.err ) {
+
+        this.thirdStepMessage = response.msg;
+        return;
+        
+      };
+      
       this.thirdStepMessage = response.msg;
+      this.registrationSuccessful = true;
 
     };
 

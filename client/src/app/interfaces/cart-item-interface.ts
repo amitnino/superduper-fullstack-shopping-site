@@ -4,5 +4,5 @@ export interface CartItemInterface {
     _id: string,
     totalPrice: number,
     amount: number,
-    storeItem: StoreItemInterface
+    storeItemId: StoreItemInterface
 }
