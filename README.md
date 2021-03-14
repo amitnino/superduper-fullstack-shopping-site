@@ -6,6 +6,7 @@ at John Bryce Training College.
 ### What are we brewing here?
 
 I used Angular 2+ frame work for the frontend,
+for the Api I used ExpressJS and Mongoose Libraries,
 for my database I used MongoDb.
 
 #
