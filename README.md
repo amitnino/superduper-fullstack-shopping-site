@@ -25,7 +25,7 @@ Handles authorization functions.
 
         - path: /login
         - POST: body: {username:string, password:string} 
-        - response: {err:boolean, msg:string, refreshToken:string, token:string, cart:{}, orders:[{}] }
+        - response: {err:boolean, msg:string, refreshToken:string, token:string, cart:{}}
 
     ### Register :
 
@@ -109,7 +109,7 @@ Handles request for store items related functions such as adding item to cart, a
 # Cart :
 
 Handles all cart functions such as adding item to cart, removing item from cart, completing orders etc.
-Once user logs in, if there is an open cart, 
+Once user logs in, if there is an open cart, the Api will add the cart to the response
 ! All requests in this path return in response the new "state" of the cart from database.
 
 
