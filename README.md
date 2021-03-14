@@ -3,7 +3,7 @@
 A fake brewery website, created as final project as a student
 at John Bryce Training College.
 
-# ========= SuperDuper Api Documentation =========
+# === SuperDuper Api Documentation ===
 
 Api URL: http://localhost:1000/
 
