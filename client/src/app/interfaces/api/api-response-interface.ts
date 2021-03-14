@@ -1,6 +1,6 @@
-import { CartInterface } from "./cart-interface";
-import { StoreItemInterface } from 'src/app/interfaces/store-item-interface';
-import { StoreCategoryInterface } from './store-category-interface';
+import { CartInterface } from "../cart/cart-interface";
+import { StoreItemInterface } from '../store/store-item-interface';
+import { StoreCategoryInterface } from '../store/store-category-interface';
 
 export interface ApiResponseInterface {
     err: boolean,

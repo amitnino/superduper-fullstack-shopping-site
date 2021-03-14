@@ -1,0 +1,24 @@
+app-cart-list{
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 200px !important;
+    height: 70% !important;
+    min-width: 290px !important;
+    width: 100% !important;
+    max-width: 500px !important;
+    flex-wrap: nowrap !important;
+}
+app-cart-info{
+    min-height: 150px !important;
+    height: 10% !important;
+    min-width: 290px;
+    width: 100%;
+    max-width: 500px;
+}
+app-cart-btns{
+    min-height: 50px !important;
+    height: 10% !important;
+    min-width: 290px;
+    width: 100%;
+    max-width: 500px;
+}

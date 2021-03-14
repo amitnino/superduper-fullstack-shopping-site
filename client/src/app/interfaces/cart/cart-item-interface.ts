@@ -1,4 +1,4 @@
-import { StoreItemInterface } from "./store-item-interface";
+import { StoreItemInterface } from "../store/store-item-interface";
 
 export interface CartItemInterface {
     _id: string,

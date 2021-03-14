@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
-import { CartApiBodyRequestInterface } from 'src/app/interfaces/cart-api-body-request-interface';
-import { CartInterface } from 'src/app/interfaces/cart-interface';
+import { CartApiBodyRequestInterface } from 'src/app/interfaces/cart/cart-api-body-request-interface';
+import { CartInterface } from 'src/app/interfaces/cart/cart-interface';
 import { CartApiService } from './cart-api.service';
 
 @Injectable({

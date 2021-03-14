@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { UserApiService } from './user-api.service';
-import { UserInterface } from './../../interfaces/user-interface';
+import { UserInterface } from '../../interfaces/user/user-interface';
 import { CartService } from '../cart/cart.service';
 
 @Injectable({

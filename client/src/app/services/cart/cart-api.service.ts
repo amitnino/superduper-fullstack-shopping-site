@@ -33,7 +33,7 @@ export class CartApiService {
 
   public editItemAmountToApi = async (body: any): Promise<any> => {
 
-    return await this._api.defaultApiResponseHandler(this._api.post(this.url + 'edit', body));
+    return await this._api.defaultApiResponseHandler(this._api.put(this.url + 'amount', body));
 
   };
 
@@ -45,7 +45,7 @@ export class CartApiService {
 
   public resetCartToApi = async (): Promise<any> => {
 
-    return await this._api.defaultApiResponseHandler(this._api.delete(this.url));
+    return await this._api.defaultApiResponseHandler(this._api.delete(this.url+'reset'));
 
   };
 };

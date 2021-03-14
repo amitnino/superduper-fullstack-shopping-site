@@ -1,4 +1,4 @@
-import { OrderInterface } from "./order-interface";
+import { OrderInterface } from "../order/order-interface";
 
 export interface UserInterface {
     _id: string,

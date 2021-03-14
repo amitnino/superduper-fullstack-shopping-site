@@ -1,6 +1,7 @@
 mat-sidenav{
     padding: 16px;
     width: 30%;
+    min-width: 340px;
 }
 
 mat-sidenav-container{

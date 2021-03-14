@@ -20,4 +20,4 @@ export class CartSideBarContainerComponent implements OnInit {
 
   
 
-}
+};

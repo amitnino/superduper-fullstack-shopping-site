@@ -1,3 +1,4 @@
-<app-cart-list></app-cart-list>
-<app-cart-info></app-cart-info>
-<app-cart-btns *ngIf="(router.url!=='/order')" ></app-cart-btns>
+<p class="mat-display-2">My Cart</p>
+<app-cart-list class="default-flex flex-column flex-start"></app-cart-list>
+<app-cart-info class="default-flex flex-between"></app-cart-info>
+<app-cart-btns class="default-flex flex-around" *ngIf="(router.url!=='/order')" ></app-cart-btns>

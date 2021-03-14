@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { OrderInterface } from 'src/app/interfaces/order-interface';
+import { OrderInterface } from 'src/app/interfaces/order/order-interface';
 
 @Injectable({
   providedIn: 'root'

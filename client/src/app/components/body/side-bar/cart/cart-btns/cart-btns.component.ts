@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-cart-btns',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartBtnsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public _cartService: CartService,
+    public router: Router,
+
+  ) { };
 
   ngOnInit(): void {
-  }
+  };
 
+  public submitOrder = (): void => {
+    this.router.navigateByUrl('/order');
+  };
+  public resetCart = (): void => {
+    this._cartService.resetCart();
+  };
+  
 }

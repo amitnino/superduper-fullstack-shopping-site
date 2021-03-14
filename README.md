@@ -1,4 +1,9 @@
-========= SuperDuper Api Documentation =========
+# SuperDuper Brewery
+
+A fake brewery website, created as final project as a student
+at John Bryce Training College.
+
+# === SuperDuper Api Documentation ===
 
 Api URL: http://localhost:1000/
 
@@ -8,21 +13,21 @@ Api URL: http://localhost:1000/
 
 ------------------------------------------------------------------------
 
-### Authentication :
+# Authentication :
 
 Handles authorization functions.
 
 - path: /auth/
 
-    # Login :
+    ### Login :
         
         Login to get a token and authorization to use the website.
 
         - path: /login
         - POST: body: {username:string, password:string} 
-        - response: {err:boolean, msg:string, refreshToken:string, token:string, cart:{}, orders:[{}] }
+        - response: {err:boolean, msg:string, refreshToken:string, token:string, cart:{}}
 
-    # Register :
+    ### Register :
 
         Handles registration functions
 
@@ -52,7 +57,7 @@ Handles authorization functions.
 
 ------------------------------------------------------------------------
 
-### Store Items :
+# Store Items :
 
 Handles request for store items related functions such as adding item to cart, adding item to store database, complete purchase etc.
 
@@ -82,7 +87,7 @@ Handles request for store items related functions such as adding item to cart, a
             - GET: params: query:string
             - response: { err:boolean, storeItems:[{}] }
 
-    # ADMIN functions:
+    ### ADMIN functions:
 
 	- path: /admin/
 
@@ -101,49 +106,50 @@ Handles request for store items related functions such as adding item to cart, a
                 - response: { err:boolean, msg:string, storeItems:[{}] } // Api sends all store items in response
 
 
-### Cart :
+# Cart :
 
 Handles all cart functions such as adding item to cart, removing item from cart, completing orders etc.
-Once user logs in, if there is an open cart, 
+Once user logs in, if there is an open cart, the Api will add the cart to the response
 ! All requests in this path return in response the new "state" of the cart from database.
+
 
 - path: /cart/
 
-    1. Create new cart.
+		1. Create new cart.
 
-        - path: /new
-        - GET:
-        - response: { err:boolean, msg:string, cart:[] }
+		- path: /new
+		- GET:
+		- response: { err:boolean, msg:string, cart:[] }
 
-    2. Get open cart
+		2. Get open cart
 
-        - path: /open
-        - GET:
-        - response: { err:boolean, msg:string, cart:[{}] }
+		- path: /open
+		- GET:
+		- response: { err:boolean, msg:string, cart:[{}] }
 
-    3. Add item to cart:
+		3. Add item to cart:
 
-        - path: /add
-        - POST: body:{ storeItemId:string, amount:number }
-        - response: { err:boolean, msg:string, cart:[{}] }
+		- path: /add
+		- POST: body:{ storeItemId:string, amount:number }
+		- response: { err:boolean, msg:string, cart:[{}] }
 
-    4. Edit the amount:
+		4. Edit the amount:
 
-        - path: /amount
-        - POST: body:{ cartItemId:string, amount:number }
-        - response: { err:boolean, msg:string, cart:[{}] }
+		- path: /amount
+		- POST: body:{ cartItemId:string, amount:number }
+		- response: { err:boolean, msg:string, cart:[{}] }
 
-    5. Remove Item from cart:
+		5. Remove Item from cart:
 
-        - path: /remove/:cartItemId
-        - DELETE: params: cartItemId
-        - response: { err:boolean, msg:string, cart:[{}] }
+		- path: /remove/:cartItemId
+		- DELETE: params: cartItemId
+		- response: { err:boolean, msg:string, cart:[{}] }
 
-    6.  Remove all items from cart:
+		6.  Remove all items from cart:
 
-        - path: /reset
-        - DELETE: 
-        - response: { err:boolean, msg:string, cart:[] }
+		- path: /reset
+		- DELETE: 
+		- response: { err:boolean, msg:string, cart:[] }
 
 ### !!TODO!! Order :
 
@@ -152,20 +158,20 @@ in database and is set { isActive: false }.
 
 - path: /order
 
-    1. Create a new order ( sets cart to { isActive: false } ) :
+	    1. Create a new order ( sets cart to { isActive: false } ) :
 
-        - path: /new
-        - POST: body: { cartId:string, city:string, street:string , delieveryDate:date, creditCard:number }
-        - response: { err:boolean, msg:string, order:{} }
+		- path: /new
+		- POST: body: { cartId:string, city:string, street:string , delieveryDate:date, creditCard:number }
+		- response: { err:boolean, msg:string, order:{} }
 
-    2. Get all orders:
+	    2. Get all orders:
 
-        - path: /
-        - GET:
-        - response: { err:boolean, msg:string, orders:[{}] }
+		- path: /
+		- GET:
+		- response: { err:boolean, msg:string, orders:[{}] }
 
-    3. Get Orders By User id:
+	    3. Get Orders By User id:
 
-        - path: /userId/:userId
-        - GET: params: userId
-        - response: { err:boolean, msg:string, orders:[{}] }
+		- path: /userId/:userId
+		- GET: params: userId
+		- response: { err:boolean, msg:string, orders:[{}] }

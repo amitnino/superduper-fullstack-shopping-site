@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api/api.service';
 import jwt_decode from 'jwt-decode';
-import { ApiResponseInterface } from 'src/app/interfaces/api-response-interface';
-import { HttpErrorResponse } from '@angular/common/http';
-import { UserInterface } from 'src/app/interfaces/user-interface';
+import { UserInterface } from 'src/app/interfaces/user/user-interface';
 
 @Injectable({
   providedIn: 'root'

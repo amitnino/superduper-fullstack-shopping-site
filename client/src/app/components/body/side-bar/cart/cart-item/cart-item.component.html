@@ -1,55 +1,32 @@
-<mat-card class="default-flex flex-around max-width mb-1">
-    <mat-card-title-group>
-        <img mat-card-sm-image src="{{cartItem.storeItemId.picture}}" />
-        <mat-card-title>Item Name: {{cartItem.storeItemId.name}}</mat-card-title>
-        <mat-card-title>Price per: {{cartItem.storeItemId.price}}</mat-card-title>
-        <mat-card-subtitle>Amount: {{cartItem.amount}}</mat-card-subtitle>
-        <mat-card-subtitle>Total Price: ${{cartItem.totalPrice}}</mat-card-subtitle>
-    </mat-card-title-group>
-</mat-card>
-
-<!-- <div class="cart-item">
-    <div class="img-box">
-        <img class='thumbnail'src="{{}}" alt="photo of{{}}">
-    </div>
-    <div class="text-box">
-        <p>{{}}</p>
-        <div class="price-box">
-            <p>{{}}</p>
-            <p>{{}}</p>
-        </div>
-       
-    </div>
-</div> -->
-
-<!-- <mat-list>
-    <mat-list-item class="cart-item" *ngFor='let item of _data.cart'>
-        <img class='thumbnail'src="{{item.IMAGE}}" alt="photo of{{item.PRODUCT_NAME}}">
-        <div class="text-box">
-            <p mat-line>{{item.PRODUCT_NAME}}</p>
-            <div class="price-box">
-                <p mat-line>{{item.QTY}}</p>
-                <p mat-line>{{item.PRICE}}</p>
-            </div>
-            
-        </div>
-   <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
-</mat-list-item>
-</mat-list> -->
-
-
-<!-- <div class="cart-item" *ngFor='let item of _data.cart'>
-    <div class="img-box">
-        <img class='thumbnail'src="{{item.IMAGE}}" alt="photo of{{item.PRODUCT_NAME}}">
-    </div>
-    <div class="text-box">
-        <p>{{item.PRODUCT_NAME}}</p>
-        <div class="price-box">
-            <p>{{item.QTY}}</p>
-            <p>{{item.PRICE}}</p>
-        </div>
-       
-    </div>
-</div> -->
-
-
+<div class="img-container default-flex flex-center">
+  <img src="{{cartItem.storeItemId.picture}}" alt="{{cartItem.storeItemId.name}}">
+</div>
+<div class="item-info default-flex flex-column flex-between">
+  <p><strong>{{cartItem.storeItemId.name}}</strong></p>
+  <div class="item-info-single default-flex flex-between max-width mt-2">
+    <p><strong>Price per</strong></p>
+    <p><strong>${{cartItem.storeItemId.price}}</strong></p>
+  </div>
+  <div class="item-info-single default-flex flex-between max-width">
+    <p><strong>Amount</strong></p>
+    <p><strong>x{{newCartItemAmount}}</strong></p>
+  </div>
+</div>
+<div class="item-btns default-flex flex-column flex-around mt-2" *ngIf="router.url !== '/order'">
+  <div class="default-flex flex-start">
+    <button mat-icon-button color="warn" (click)="removeItemButton()">
+      <mat-icon>backspace</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" (click)="applyNewItemAmountButton()" *ngIf="newCartItemAmount !== cartItem.amount">
+      <mat-icon>check_circle</mat-icon>
+    </button>
+  </div>
+  <div class="default-flex flex-start">
+    <button mat-icon-button (click)="changeItemAmountButton(true)">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-icon-button (click)="changeItemAmountButton()">
+      <mat-icon>remove</mat-icon>
+    </button>
+  </div>
+</div>
