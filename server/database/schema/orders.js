@@ -13,6 +13,14 @@ const ordersSchema = new Schema({
 
 }, defaultSchemaOptions);
 
+ordersSchema.pre('save', async function(){
+
+    const cart = await Cart.findById(this.cartId);
+    cart.isActive = false;
+    await cart.save();
+
+});
+
 const Order = model('Order', ordersSchema);
 
 module.exports = { Order };

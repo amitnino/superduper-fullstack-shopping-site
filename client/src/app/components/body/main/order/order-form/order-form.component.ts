@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as moment from 'moment';
 import { OrderApiService } from 'src/app/services/order/order-api.service';
 
 @Component({
@@ -21,14 +22,34 @@ export class OrderFormComponent implements OnInit {
     this.orderForm = this.formBuilder.group({
       city: ['', [Validators.required]],
       street: [{value:'', disabled: true}, [Validators.required]],
-      orderDate: [new Date(), [Validators.required]],
+      orderDate: ['', [Validators.required]],
       creditCard: ['', [Validators.required]],
     });
+  };
+
+  public disabledDatesFilter = (date: any | null): boolean => {
+
+    if (!date) return false ;  
+    
+    if ( date._d.getTime() < Date.now() ) return false;
+
+    if ( date._d.getDate().toString() === new Date(1616277600000).getDate().toString() ) return false;
+
+    // console.log(date._d.getDate().toString()); // used for debugging
+
+    return true;
+
   };
 
   public toggleStreetInputOnCitySelection = (): void => {
 
     this.cityControl.invalid ? this.streetControl.disable() : this.streetControl.enable();
+  
+  };
+
+  public submitOrderButton = ():void => {
+
+    console.log(this.orderForm.value);
   
   };
 
