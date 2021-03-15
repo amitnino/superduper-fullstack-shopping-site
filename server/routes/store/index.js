@@ -27,6 +27,24 @@ router.get('/', async ( req, res ) => {
     };
 
 });
+router.get('/items', async ( req, res ) => {
+
+    try {
+        
+        const storeItems = await StoreItem.find().populate(CATEGORYID);
+
+        defaultStoreResponse(res, { storeItems });
+
+        return;
+
+    } catch (error) {
+        
+        defaultErrorResponse(res, error);
+
+        return;
+
+    };
+});
 
 router.get('/itemId/:itemId', async (req, res) => {
     
