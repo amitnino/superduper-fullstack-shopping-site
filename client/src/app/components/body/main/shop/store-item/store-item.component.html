@@ -1,1 +1,18 @@
-<p>store-item works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{storeItem?.name}}</mat-card-title>
+    <mat-card-subtitle>Price: ${{storeItem?.price}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src={{storeItem?.picture}}>
+  <mat-card-actions>
+    <button mat-icon-button>
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>remove</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>add_shopping_cart</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

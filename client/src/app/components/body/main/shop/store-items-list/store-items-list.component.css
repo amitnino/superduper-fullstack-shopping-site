@@ -1,0 +1,11 @@
+:host{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 15px;
+    overflow-y: scroll;
+    min-height: 490px !important;
+    max-height: 910px !important;
+    height: 100% !important;
+}

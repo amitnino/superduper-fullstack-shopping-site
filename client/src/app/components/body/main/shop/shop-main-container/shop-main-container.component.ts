@@ -9,11 +9,12 @@ import { StoreService } from 'src/app/services/store/store.service';
 export class ShopMainContainerComponent implements OnInit {
 
   constructor(
-    _storeService: StoreService,
+    public _storeService: StoreService,
 
   ) { };
 
   ngOnInit(): void {
+    this._storeService.getStore();
   }
 
   

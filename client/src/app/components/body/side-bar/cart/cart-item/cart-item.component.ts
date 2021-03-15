@@ -23,7 +23,7 @@ export class CartItemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.newCartItemAmount = this.cartItem.amount
+    this.newCartItemAmount = this.cartItem.amount;
   };
 
   public allowEditAmount = (): void => {

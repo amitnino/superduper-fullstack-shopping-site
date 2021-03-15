@@ -1,5 +1,5 @@
 <div class="img-container default-flex flex-center">
-  <img src="{{cartItem.storeItemId.picture}}" alt="{{cartItem.storeItemId.name}}">
+  <img src="{{cartItem.storeItemId.picture}}" *ngIf="cartItem.storeItemId?.picture">
 </div>
 <div class="item-info default-flex flex-column flex-between">
   <p><strong>{{cartItem.storeItemId.name}}</strong></p>
