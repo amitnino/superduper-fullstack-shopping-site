@@ -18,6 +18,11 @@ export class StoreApiService {
     return await this._api.defaultApiResponseHandler(this._api.get(this.url));
 
   };
+  public getAllStoreItemsFromApi = async (): Promise<any> => {
+
+    return await this._api.defaultApiResponseHandler(this._api.get(this.url + 'items'));
+
+  };
 
   public getItemByIdFromApi = async (itemId: string): Promise<any> => {
 

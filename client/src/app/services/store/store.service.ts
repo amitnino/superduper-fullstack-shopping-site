@@ -10,7 +10,8 @@ import { StoreApiResponseInterface } from 'src/app/interfaces/store/store-api-re
 export class StoreService {
 
   constructor(
-    public _storeApiService: StoreApiService
+    private _storeApiService: StoreApiService,
+    
   ) { };
 
   public storeItems: StoreItemInterface[]
@@ -23,22 +24,28 @@ export class StoreService {
   };
 
   private defaultStoreApiResponseHandler = async (apiResponse:Promise<any>): Promise<void> => {
-
+    
     const response: StoreApiResponseInterface = await apiResponse;
-
+    
     this.updateStoreItemsState(response.storeItems);
-
+    
+  };
+  
+  public getStore = async (): Promise<void> => {
+    
+    const response: StoreApiResponseInterface = await this._storeApiService.getStoreFromApi();
+    
+    if ( response.err ) return console.log(response.msg);
+    
+    this.updateStoreItemsState(response.storeItems);
+    
+    this.storeCategories = response.storeCategories;
+    
   };
 
-  public getStore = async (): Promise<void> => {
+  public getAllStoreItems = async (): Promise<any> => {
 
-    const response: StoreApiResponseInterface = await this._storeApiService.getStoreFromApi();
-
-    if ( response.err ) return console.log(response.msg);
-
-    this.updateStoreItemsState(response.storeItems);
-
-    this.storeCategories = response.storeCategories;
+    await this.defaultStoreApiResponseHandler(this._storeApiService.getAllStoreItemsFromApi());
 
   };
 

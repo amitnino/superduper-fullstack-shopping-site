@@ -1,1 +1,9 @@
-<p>filter-bar works!</p>
+<nav mat-tab-nav-bar class="min-width max-width">
+  <a mat-tab-link label="All" (click)="chooseAllItems()">
+    All
+  </a>
+  <a mat-tab-link *ngFor="let category of _storeService.storeCategories" [category]="category" label="{{category}}"
+    (click)="chooseCategory(category._id)">
+    {{category?.name}}
+  </a>
+</nav>

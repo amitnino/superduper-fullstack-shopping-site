@@ -85,6 +85,15 @@ body{
 .mb-3 {
     margin-bottom: 25px;
 }
+.mr-1 {
+    margin-right: 10px;
+}
+.mr-2 {
+    margin-right: 15px;
+}
+.mr-3 {
+    margin-right: 25px;
+}
 
 /* PADDING */
 
@@ -93,4 +102,27 @@ body{
 }
 .p-2 {
     padding: 6px;
+}
+
+@media only screen and (max-width: 600px){
+    app-shop-main-container{
+        min-height: 560px !important;
+    };
+    app-filter-bar{
+        min-height: 550px !important;
+    };
+    app-store-items-list{
+        min-height: 550px !important;
+    };
+}
+@media only screen and (max-width: 1920px){
+    app-shop-main-container{
+        min-height: 900px !important;
+    };
+    app-filter-bar{
+        min-height: 890px !important;
+    };
+    app-store-items-list{
+        min-height: 890px !important;
+    };
 }

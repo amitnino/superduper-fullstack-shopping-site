@@ -1,2 +1,1 @@
-<p>store-items-list works!</p>
-<app-store-item></app-store-item>
+<app-store-item *ngFor="let i of _storeService.storeItems" [storeitem]="storeItem" class="default-flex flex-column flex-around mr-3" ></app-store-item>
