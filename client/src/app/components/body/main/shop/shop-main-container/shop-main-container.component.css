@@ -5,17 +5,16 @@
     justify-content: flex-start;
     align-items: center;
     flex-wrap: nowrap; */
-    min-height: 560px !important;
-    max-height: 980px !important;
-    height: 100% !important;
+    min-height: 560px;
+    max-height: 980px;
+    height: 100%;
     width: 100%;
     overflow: hidden;
-    background-color: rgb(250, 89, 89);
 };
 
 app-filter-bar{
 
-    min-height: 50px !important;
+    min-height: 50px;
     height: 10%;
     max-height: 70px;
 

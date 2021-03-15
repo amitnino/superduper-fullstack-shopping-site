@@ -5,14 +5,18 @@
   </mat-card-header>
   <img mat-card-image src={{storeItem?.picture}}>
   <mat-card-actions>
-    <button mat-icon-button>
-      <mat-icon>add</mat-icon>
-    </button>
-    <button mat-icon-button>
-      <mat-icon>remove</mat-icon>
-    </button>
-    <button mat-icon-button>
-      <mat-icon>add_shopping_cart</mat-icon>
-    </button>
+    <div class="default-flex flex-center">
+
+      <button mat-icon-button (click)="changeItemAmountButton(true)">
+        <mat-icon>add</mat-icon>
+      </button>
+      <p class="mat-title">{{amount}}</p>
+      <button mat-icon-button (click)="changeItemAmountButton()">
+        <mat-icon>remove</mat-icon>
+      </button>
+      <button mat-icon-button (click)="addItemToCart()">
+        <mat-icon>add_shopping_cart</mat-icon>
+      </button>
+    </div>
   </mat-card-actions>
 </mat-card>

@@ -15,13 +15,13 @@ export class PersonalInfoFormComponent implements OnInit {
   public personalInfoForm: FormGroup;
 
   constructor(
-    public fb: FormBuilder,
+    public formBuilder: FormBuilder,
     public _orderApiService: OrderApiService,
     
   ) { }
 
   ngOnInit(): void { 
-    this.personalInfoForm = this.fb.group({
+    this.personalInfoForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       city: ['', [Validators.required]],
@@ -29,7 +29,7 @@ export class PersonalInfoFormComponent implements OnInit {
     })
   }
 
-  public enableStreetInputOnCitySelection = () => {
+  public toggleStreetInputOnCitySelection = () => {
 
     this.cityControl.invalid ? this.streetControl.disable() : this.streetControl.enable();
   

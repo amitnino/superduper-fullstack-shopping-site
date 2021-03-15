@@ -14,14 +14,14 @@ export class AuthorizationComponent implements OnInit {
   public hidePassword: boolean = false;
 
   constructor(
-    public fb: FormBuilder,
+    public formBuilder: FormBuilder,
     public router: Router,
     public _us: UserService,
 
   ) { };
 
   ngOnInit(): void {
-    this.loginForm = this.fb.group({
+    this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     })

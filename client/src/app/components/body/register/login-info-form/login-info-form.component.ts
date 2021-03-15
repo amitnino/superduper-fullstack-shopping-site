@@ -27,13 +27,13 @@ export class LoginInfoFormComponent implements OnInit {
   }
 
   constructor(
-    public fb: FormBuilder,
+    public formBuilder: FormBuilder,
     public _userService: UserService,
 
   ) { }
 
   ngOnInit(): void {
-    this.loginInfoForm = this.fb.group({
+    this.loginInfoForm = this.formBuilder.group({
       username: ['', [Validators.required, newEmailValidator]],
       password: ['', [Validators.required, Validators.minLength(5)]],
       confirmPassword: ['', [Validators.required, ConfirmEqualValidator]],

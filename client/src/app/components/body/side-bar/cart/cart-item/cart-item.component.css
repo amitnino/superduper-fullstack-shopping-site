@@ -1,7 +1,7 @@
 :host {
-    min-width: 270px !important;
-    width: 100% !important;
-    max-width: 450px !important;
+    min-width: 270px;
+    width: 100%;
+    max-width: 450px;
 }
 .img-container{
     min-width: 40px;
@@ -17,15 +17,15 @@ img{
     width: 48%;
 }
 .item-info > p{
-    padding: 0 !important;
-    margin: 0 !important;
+    padding: 0;
+    margin: 0;
 }   
 .item-info-single{
-    width: 100% !important;
+    width: 100%;
 }
 
 .item-btns{
     min-width: 80px;
     width: 20%;
-    align-items: flex-start !important;
+    align-items: flex-start;
 }
