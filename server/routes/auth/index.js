@@ -159,13 +159,13 @@ router.post('/login', async (req, res) => {
         const response = {
             
             err: false,
-            msg: 'Welcome ' + fullName,
+            msg: `Welcome, ${user.firstName} ${user.lastName}`,
             loginToken,
             // refreshToken,
             
         };
 
-        if ( !isAdmin ) {
+        if ( !user.isAdmin ) {
 
             response.cart = await Cart.findOne({ userId: user._id, isActive: true });
 

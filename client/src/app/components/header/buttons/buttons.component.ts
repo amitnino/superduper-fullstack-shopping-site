@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-buttons',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ButtonsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public router: Router,
+
+  ) { }
 
   ngOnInit(): void {
   }
+  public navigateToHomePage = ():void => {
+    this.router.navigateByUrl('/welcome')
+  };
+  public navigateToShopPage = ():void => {
+    this.router.navigateByUrl('/shop')
+  };
 
 }

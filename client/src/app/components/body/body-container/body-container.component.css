@@ -1,20 +1,16 @@
-mat-sidenav{
-    padding: 16px;
-    width: 30%;
-    min-width: 340px;
-}
-
-mat-sidenav-container{
-    /* BIG SCREEN */
-    height: calc( 100% - 81px ); 
-    /* SMALL SCREEN */
-    /* height: calc( 100% - 57px );  */
+:host{
+    display: block;
+    width: 100%;
     overflow: hidden;
-    /* overflow-x: hidden; */
-    /* overflow-y: auto; */
 }
 
 .main-container{
     position: relative;
     /* background-color:red; */
+}
+
+mat-sidenav{
+    padding: 16px;
+    width: 30%;
+    min-width: 340px;
 }

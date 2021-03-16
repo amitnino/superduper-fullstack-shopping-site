@@ -1,12 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body {
+html,
+body {
     height: 100%;
     width: 100vw;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-body{
+body {
     height: 100%;
     width: 100%;
 }
@@ -24,7 +25,7 @@ body{
 .full-height {
     height: 100%;
 }
-.side-bar-height{
+.side-bar-height {
     min-height: 500px;
     max-height: 860px;
 }
@@ -35,8 +36,8 @@ body{
     max-width: 100%;
 }
 
-.block{
-    display:block;
+.block {
+    display: block;
 }
 
 /* FLEX */
@@ -48,7 +49,7 @@ body{
     flex-wrap: wrap;
 }
 
-.flex-column  {
+.flex-column {
     flex-direction: column;
 }
 
@@ -66,7 +67,7 @@ body{
 }
 
 /* MARGINS */
-.m-auto{
+.m-auto {
     margin: auto;
 }
 .mt-1 {
@@ -113,4 +114,30 @@ body{
 }
 .p-2 {
     padding: 6px;
+}
+
+/* mobile */
+@media only screen and (max-width: 425px) {
+    mat-sidenav,mat-sidenav-content{
+        height: 555px;
+    }
+    mat-sidenav-container {
+        height: 570px;
+    }
+}
+@media only screen and (min-width: 425px) and (max-width: 768px) {
+    mat-sidenav,mat-sidenav-content{
+        height: 990px;
+    }
+    mat-sidenav-container {
+        height: 1000px;
+    }
+}
+@media only screen and (min-width: 768px){
+    mat-sidenav,mat-sidenav-content{
+        height: 880px;
+    }
+    mat-sidenav-container {
+        height: 890px;
+    }
 }

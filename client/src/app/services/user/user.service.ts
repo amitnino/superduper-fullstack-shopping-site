@@ -60,6 +60,7 @@ export class UserService implements OnInit {
     this.user = { ...this.initialUser };
     this.isLoggedIn = false;
     localStorage.removeItem('token');
+    this.router.navigateByUrl('/welcome');
 
   };
 

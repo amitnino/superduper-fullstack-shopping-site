@@ -1,12 +1,5 @@
 :host{
+    display: block;
     height: 100%;
     width: 100%;
-}
-
-app-header-container{
-    height: 60px;
-}
-
-app-body-container{
-    height: calc( 100% - 70px );
-}
+};
