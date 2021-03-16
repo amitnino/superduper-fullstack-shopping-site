@@ -23,11 +23,21 @@ export class StoreService {
 
   };
 
-  private defaultStoreApiResponseHandler = async (apiResponse:Promise<any>): Promise<void> => {
+  private defaultStoreApiResponseHandler = async (apiResponse:Promise<any>): Promise<any> => {
     
     const response: StoreApiResponseInterface = await apiResponse;
     
+    if ( response.msg ) console.log(response.msg);
+
+    if (response.err) {
+      
+      return response;
+      
+    };
+    
     this.updateStoreItemsState(response.storeItems);
+
+    return response;
     
   };
   
@@ -49,7 +59,7 @@ export class StoreService {
 
   };
 
-  public getItemById = async (itemId: string): Promise<void> => {
+  public getItemById = async (itemId: string): Promise<any> => {
     
     return await this._storeApiService.getItemByIdFromApi(itemId);
 
@@ -64,6 +74,12 @@ export class StoreService {
   public getItemsBySearch = async (query: string): Promise<any> => {
 
     await this.defaultStoreApiResponseHandler(this._storeApiService.getItemsBySearchFromApi(query));
+
+  };
+
+  public addOrEditItemToStore = async (body: StoreItemInterface, isEdit: boolean): Promise<any> => {
+
+    return await this.defaultStoreApiResponseHandler(this._storeApiService.addOrEditStoreItemToApi(body, isEdit));
 
   };
 

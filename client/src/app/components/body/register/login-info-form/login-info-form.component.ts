@@ -37,7 +37,7 @@ export class LoginInfoFormComponent implements OnInit {
       username: ['', [Validators.required, newEmailValidator]],
       password: ['', [Validators.required, Validators.minLength(5)]],
       confirmPassword: ['', [Validators.required, ConfirmEqualValidator]],
-      israeliId: ['', [Validators.required, IsraeliIdValidator], []],
+      israeliId: ['', [Validators.required, IsraeliIdValidator]],
     })
   }
 
