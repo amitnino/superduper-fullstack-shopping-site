@@ -1,9 +1,11 @@
 export interface OrderInterface {
-    _id: string,
+    _id?: string,
     city: string,
     street: string,
     delieveryDate: Date,
-    creditCard: number,
+    creditCard: string,
     cartId: string,
-    userId: string
+    userId: string,
+    createdAt?: Date,
+    updatedAt?: Date,
 }

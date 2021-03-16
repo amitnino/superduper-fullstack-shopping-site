@@ -24,7 +24,8 @@ export class UserApiService {
       isAdmin,
       city,
       street,
-      orders
+      lastOrder,
+      numberOfOrders
     }: any = jwt_decode(token);
 
     const user = {
@@ -34,7 +35,8 @@ export class UserApiService {
       isAdmin,
       city,
       street,
-      orders
+      lastOrder,
+      numberOfOrders
     };
 
     return user;
@@ -60,6 +62,12 @@ export class UserApiService {
   public registerUserToApi = async (body: Object): Promise<any> => {
 
     return await this._api.defaultApiResponseHandler(this._api.post(this.url + 'register', body));
-    
+
   };
+
+  public placeOrderToApi = async (body: Object): Promise<any> => {
+
+    return await this._api.defaultApiResponseHandler(this._api.post('orders/new', body));
+
+  }
 };

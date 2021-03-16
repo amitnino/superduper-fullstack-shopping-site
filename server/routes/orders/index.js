@@ -1,5 +1,5 @@
 const {
-    defaultErrorResponse
+    defaultErrorResponse, generateLoginToken
 } = require('..');
 const {
     Order
@@ -7,7 +7,8 @@ const {
 const {
     MISSING_INFO,
     CARTID,
-    CART
+    CART,
+    LOGIN_TOKEN
 } = process.env;
 
 const router = require('express').Router();
@@ -61,20 +62,20 @@ router.post('/new', async (req, res) => {
 
         };
 
-        const newDate = new Date(1616277600000);
-
         const order = new Order({
             ...req.body,
-            delieveryDate: newDate,
             userId: req.user._id
         });
 
         await order.save();
 
+        const loginToken = await generateLoginToken(req.user._id, LOGIN_TOKEN);
+
         res.json({
             err: false,
+            msg: 'Order created successfully',
             order,
-            msg: 'order created successfully'
+            loginToken,
         });
 
     } catch (error) {

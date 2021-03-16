@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { OrderApiService } from 'src/app/services/order/order-api.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-personal-info-form',
@@ -16,7 +16,7 @@ export class PersonalInfoFormComponent implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
-    public _orderApiService: OrderApiService,
+    public _userService: UserService,
     
   ) { }
 

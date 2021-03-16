@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderApiService } from 'src/app/services/order/order-api.service';
+import { StatisticsApiService } from 'src/app/services/statistics/statistics-api.service';
 
 @Component({
   selector: 'app-statistics',
@@ -9,10 +9,11 @@ import { OrderApiService } from 'src/app/services/order/order-api.service';
 export class StatisticsComponent implements OnInit {
 
   constructor(
-    public _os: OrderApiService,
+    public _statisticsApiService: StatisticsApiService,
   ) { }
 
   ngOnInit(): void {
+    this._statisticsApiService.getStatistics();
   }
 
 }

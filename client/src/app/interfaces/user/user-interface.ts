@@ -1,11 +1,14 @@
-import { OrderInterface } from "../order/order-interface";
+import { OrderInterface } from './../order/order-interface';
 
 export interface UserInterface {
-    _id: string,
+    _id?: string,
     username: string,
+    firstName?: string,
+    lastName?: string,
     fullName: string,
     isAdmin: boolean,
     city: string,
     street: string,
-    orders: OrderInterface[]
+    lastOrder: OrderInterface,
+    numberOfOrders: number
 }

@@ -153,25 +153,7 @@ router.post('/login', async (req, res) => {
 
         };
         
-        const { _id, firstName, lastName, city, street, isAdmin } = user;
-        const fullName = firstName + ' ' + lastName;
-        
-        const orders = await Order.find({userId: _id}).populate(USERID);
-
-        const loginTokenData = {
-
-            _id,
-            username,
-            fullName,
-            isAdmin,
-            city,
-            street,
-            orders
-
-        };
-
-        
-        const loginToken = generateLoginToken(loginTokenData, LOGIN_TOKEN);
+        const loginToken = await generateLoginToken(user._id, LOGIN_TOKEN);
         // const refreshToken = generateRefreshToken({username}, REFRESH_TOKEN);
         
         const response = {
@@ -185,7 +167,7 @@ router.post('/login', async (req, res) => {
 
         if ( !isAdmin ) {
 
-            response.cart = await Cart.findOne({ userId: _id, isActive: true });
+            response.cart = await Cart.findOne({ userId: user._id, isActive: true });
 
         };
 

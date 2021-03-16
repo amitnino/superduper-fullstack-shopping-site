@@ -2,21 +2,21 @@
     <p class="mat-display-1">Welcome {{_userService.user?.fullName}}</p>
     
     <!-- In case first time user show this -->
-    <div class="new-user-message" *ngIf="!_cartService.cart?.cartItems?.length && !_userService.user?.orders.length">
+    <div class="new-user-message" *ngIf="!_cartService.cart?.cartItems?.length && !_userService.user?.numberOfOrders">
         <p class="mat-title">Quickly! Start Drinking!!</p>
     </div>
     
     <!-- In Case There isn't an open cart show this -->
-    <div class="placed-orders-details" *ngIf="!_cartService.cart?.cartItems?.length && _userService.user?.orders.length">
-        <p class="mat-title">Last order was placed on: {{_userService.user?.orders[0].delieveryDate | date:'short'}}</p>
-        <p class="mat-title">Total number of orders you have placed: {{_userService.user?.orders.length}}</p>
+    <div class="placed-orders-details" *ngIf="!_cartService.cart?.cartItems?.length && _userService.user?.numberOfOrders">
+        <p class="mat-title">Last order was placed on: {{_userService.user?.lastOrder.delieveryDate | date}}</p>
+        <p class="mat-title">Total number of orders you have placed: {{_userService.user?.numberOfOrders}}</p>
     </div>
     
     <!-- In case there is an open cart show this -->
     <div class="open-cart-details" *ngIf="_cartService.cart?.cartItems?.length" >
         <p class="mat-title">You have an open cart!</p>
         <p class="mat-title">Current cart price: ${{_cartService.cart?.totalPrice}}</p>
-        <p class="mat-title">Cart was last opened at: {{_cartService.cart?.updatedAt| date:'short'}}</p>
+        <p class="mat-title">Cart was last opened at: {{_cartService.cart?.updatedAt| date}}</p>
     </div>
     
     <div class="max-width buttons default-flex flex-between">

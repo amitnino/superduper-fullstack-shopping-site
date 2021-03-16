@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import * as moment from 'moment';
-import { OrderApiService } from 'src/app/services/order/order-api.service';
+import { CartService } from 'src/app/services/cart/cart.service';
+import { UserService } from 'src/app/services/user/user.service';
+import { OrderInterface } from 'src/app/interfaces/order/order-interface';
 
 @Component({
   selector: 'app-order-form',
@@ -12,7 +13,8 @@ export class OrderFormComponent implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
-    public _orderApiService: OrderApiService
+    public _userService: UserService,
+    public _cartService: CartService,
 
   ) { };
 
@@ -22,7 +24,7 @@ export class OrderFormComponent implements OnInit {
     this.orderForm = this.formBuilder.group({
       city: ['', [Validators.required]],
       street: [{value:'', disabled: true}, [Validators.required]],
-      orderDate: ['', [Validators.required]],
+      delieveryDate: ['', [Validators.required]],
       creditCard: ['', [Validators.required]],
     });
   };
@@ -49,8 +51,24 @@ export class OrderFormComponent implements OnInit {
 
   public submitOrderButton = ():void => {
 
-    console.log(this.orderForm.value);
+    const body: OrderInterface = {
+
+      ...this.orderForm.value,
+      delieveryDate: new Date(this.delieveryDateControl.value._d),
+      creditCard: this.hideCreditCard(this.creditCardControl.value),
+      cartId: this._cartService.cart._id,
+      userId: this._userService.user._id
+
+    };
+
+    this._userService.placeOrder(body);
   
+  };
+
+  private hideCreditCard = (creditCard: string): string => {
+
+    return creditCard.replace(/[0-9](?=([0-9]{4}))/g, '*');
+
   };
 
   get cityControl() {
@@ -59,8 +77,8 @@ export class OrderFormComponent implements OnInit {
   get streetControl() {
     return this.orderForm.controls['street'];  
   };
-  get orderDateControl() {
-    return this.orderForm.controls['orderDate'];
+  get delieveryDateControl() {
+    return this.orderForm.controls['delieveryDate'];
   };
   get creditCardControl() {
     return this.orderForm.controls['creditCard'];

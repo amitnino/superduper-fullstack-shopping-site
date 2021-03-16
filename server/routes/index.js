@@ -35,9 +35,36 @@ module.exports.defaultCartResponse = (res, cart, msg) => {
 
 };
 
-module.exports.generateLoginToken = ( payload, secret ) => {
+module.exports.generateLoginToken = async ( userId, secret ) => {
 
-    return jwt.sign(payload, secret, { expiresIn: '1h' });
+    const { Order } = require('../database/schema/orders');
+    const { User } = require('../database/schema/users');
+
+    const user = await User.findById(userId);
+
+    const { _id, firstName, lastName, city, street, isAdmin, username } = user;
+
+        const fullName = firstName + ' ' + lastName;
+
+        const loginTokenData = {
+
+            _id,
+            username,
+            fullName,
+            isAdmin,
+            city,
+            street,
+
+        };
+
+        if ( !isAdmin ){
+
+            loginTokenData.lastOrder = await Order.find({userId: _id}).sort({createdAt: 'desc'}).limit(1);
+            loginTokenData.numberOfOrders = await Order.countDocuments({userId: _id});
+            
+        };
+
+    return jwt.sign(loginTokenData, secret, { expiresIn: '1h' });
 
 };
 

@@ -7,11 +7,11 @@ const ordersSchema = new Schema({
     city: requiredType(String),
     street: requiredType(String),
     delieveryDate: requiredType(Date),
-    creditCard: requiredType(Number),
+    creditCard: requiredType(String),
     cartId: {...requiredType(String), ref:Cart },
     userId: {...requiredType(String), ref:User }
 
-}, defaultSchemaOptions);
+}, {...defaultSchemaOptions, timestamps: true});
 
 ordersSchema.pre('save', async function(){
 

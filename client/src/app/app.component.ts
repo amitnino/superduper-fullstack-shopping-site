@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user/user.service';
+import { StatisticsApiService } from './services/statistics/statistics-api.service';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private _userService: UserService,
+    private _statisticsApiService: StatisticsApiService,
 
   ){ };
 

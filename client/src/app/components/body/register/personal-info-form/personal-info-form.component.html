@@ -25,7 +25,7 @@
         <mat-label>City</mat-label>
         <mat-select formControlName="city" (selectionChange)="toggleStreetInputOnCitySelection()">
           <mat-option [value]="''" >None</mat-option>
-          <mat-option *ngFor="let city of _orderApiService.cityList" [value]="city" >{{city}}</mat-option>
+          <mat-option *ngFor="let city of _userService.cityList" [value]="city" >{{city}}</mat-option>
         </mat-select>
         <mat-error *ngIf="cityControl.hasError('required')"> <strong>Required</strong> </mat-error>
       </mat-form-field>
