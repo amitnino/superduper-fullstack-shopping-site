@@ -1,9 +1,14 @@
-<nav mat-tab-nav-bar mat-align-tabs="start" >
-  <a mat-tab-link label="All" (click)="chooseAllItems()">
-    All
-  </a>
+<nav mat-tab-nav-bar  mat-align-tabs="center">
   <a mat-tab-link *ngFor="let category of _storeService.storeCategories" [category]="category" label="{{category}}"
     (click)="chooseCategory(category._id)">
     {{category?.name}}
+  </a>
+  <a mat-tab-link label="Search"  (click)="toggleSearchBar()">
+    <mat-form-field MatFormFieldAppearance="standard" floatLabel='never' *ngIf="activeCategory === 'search'" >
+      <mat-label>Search</mat-label>
+      <input matInput (change)="searchStoreItemsByQuery($event.target.value)" type="search" placeholder="Search">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <mat-icon *ngIf="activeCategory !== 'search'">search</mat-icon>
   </a>
 </nav>

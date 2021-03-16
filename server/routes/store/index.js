@@ -89,8 +89,8 @@ router.get('/categoryId/:categoryId', async ( req, res ) => {
 router.get('/search/:query', async ( req, res ) => {
     
     try {
-        
-        const storeItems = await StoreItem.find({ name: req.params.query }).populate(CATEGORYID);
+
+        const storeItems = await StoreItem.find({ name: {$regex: new RegExp(req.params.query), $options: 'i'} });
 
         defaultStoreResponse(res, { storeItems });
 

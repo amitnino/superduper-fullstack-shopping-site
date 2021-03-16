@@ -1,3 +1,7 @@
 nav{
     margin: auto;
 }
+
+mat-form-field{
+    height: 50px !important;
+}
