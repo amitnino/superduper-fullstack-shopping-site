@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { StoreItemInterface } from 'src/app/interfaces/store/store-item-interface';
 import { CartService } from 'src/app/services/cart/cart.service';
+import { UserService } from 'src/app/services/user/user.service';
+import { AdminStoreService } from './../../../../../services/store/admin-store.service';
 
 @Component({
   selector: 'app-store-item',
@@ -16,6 +18,8 @@ export class StoreItemComponent implements OnInit {
 
   constructor(
     public _cartService: CartService,
+    public _adminStoreService: AdminStoreService,
+    public _userService: UserService,
 
   ) { };
 

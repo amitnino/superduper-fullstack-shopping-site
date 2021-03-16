@@ -1,1 +1,42 @@
-<p>admin works!</p>
+<form class="default-flex flex-column flex-around" [formGroup]="adminForm">
+  <p class="mat-display-2">{{isEdit ? 'Edit Item' : 'Add new Item'}}</p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Category Id</mat-label>
+      <mat-select formControlName="categoryId">
+        <mat-option [value]="''">None</mat-option>
+        <mat-option *ngFor="let category of _storeService.storeCategories" [value]="category._id">{{category.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="categoryIdControl.hasError('required')"> <strong>Required</strong> </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="BeerMan">
+      <mat-icon matSuffix>perm_identity</mat-icon>
+      <mat-error *ngIf="nameControl.hasError('required')"> <strong>Required</strong> </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Price</mat-label>
+      <input matInput type="number" formControlName="price" placeholder="asd">
+      <mat-icon matPrefix>attach_money</mat-icon>
+      <mat-error *ngIf="priceControl.hasError('required')"> <strong>Required</strong> </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Picture</mat-label>
+      <input matInput formControlName="picture" placeholder="asd">
+      <mat-icon matSuffix></mat-icon>
+      <mat-error *ngIf="pictureControl.hasError('required')"> <strong>Required</strong> </mat-error>
+    </mat-form-field>
+  </p>
+  <div class="default-flex flex-center">
+    <button mat-raised-button class="m-auto" (click)="addButtonClick()" *ngIf="isEdit">Add new Item</button>
+    <button mat-raised-button class="m-auto" (click)="submitForm()" [disabled]="adminForm.invalid">{{isEdit ? 'Update' : 'Add'}} Item</button>
+  </div>
+</form>

@@ -5,8 +5,7 @@
   </mat-card-header>
   <img mat-card-image src={{storeItem?.picture}}>
   <mat-card-actions>
-    <div class="default-flex flex-center">
-
+    <div class="default-flex flex-center" *ngIf="!_userService.user?.isAdmin">
       <button mat-icon-button (click)="changeItemAmountButton(true)">
         <mat-icon>add</mat-icon>
       </button>
@@ -16,6 +15,11 @@
       </button>
       <button mat-icon-button (click)="addItemToCart()">
         <mat-icon>add_shopping_cart</mat-icon>
+      </button>
+    </div>
+    <div class="default-flex flex-center" *ngIf="_userService.user?.isAdmin">
+      <button mat-icon-button (click)="_adminStoreService.passStoreItemForEdit(storeItem)">
+        <mat-icon>create</mat-icon>
       </button>
     </div>
   </mat-card-actions>

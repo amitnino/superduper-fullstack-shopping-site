@@ -2,8 +2,11 @@
     <p class="mat-display-1">Welcome {{_userService.user?.fullName}}</p>
     
     <!-- In case first time user show this -->
-    <div class="new-user-message" *ngIf="!_cartService.cart?.cartItems?.length && !_userService.user?.numberOfOrders">
+    <div class="new-user-message" *ngIf="!_cartService.cart?.cartItems?.length && !_userService.user?.numberOfOrders && !_userService.user.isAdmin">
         <p class="mat-title">Quickly! Start Drinking!!</p>
+    </div>
+    <div class="new-user-message" *ngIf="_userService.user.isAdmin">
+        <p class="mat-title">Admin Rights are now unlocked</p>
     </div>
     
     <!-- In Case There isn't an open cart show this -->
@@ -21,6 +24,6 @@
     
     <div class="max-width buttons default-flex flex-between">
         <button mat-raised-button (click)="logOutButtonClick()" >Logout</button>
-        <button mat-raised-button (click)="startShoppingButtonClick()" >{{ !_cartService.cart?.cartItems?.length ? 'Start' : 'Continue' }} Shopping</button>
+        <button mat-raised-button (click)="startShoppingButtonClick()" >{{ _userService.user.isAdmin ? 'Continue' : 'Start Shopping' }}</button>
     </div>
 </div>

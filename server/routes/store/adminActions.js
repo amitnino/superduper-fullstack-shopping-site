@@ -50,7 +50,7 @@ router.post('/add', async ( req, res ) => {
 
 });
 
-router.put('/edit', async ( req, res ) => {
+router.post('/edit', async ( req, res ) => {
 
     // 2. Edit existing Item in store database:
     

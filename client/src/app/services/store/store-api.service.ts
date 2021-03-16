@@ -12,8 +12,8 @@ export class StoreApiService {
 
   ) { };
 
-  private userUrl: string = 'store/';
-  private adminUrl: string = 'store/admin/';
+  public userUrl: string = 'store/';
+  public adminUrl: string = 'store/admin/';
 
   public getStoreFromApi = async (): Promise<any> => {
 
@@ -46,7 +46,7 @@ export class StoreApiService {
 
   public addOrEditStoreItemToApi = async (body: StoreItemInterface, isEdit: boolean): Promise<any> => {
 
-    return await this._api.defaultApiResponseHandler(this._api.post(this.adminUrl + isEdit ? 'edit' : 'add', body));
+    return await this._api.defaultApiResponseHandler(this._api.post(`${this.adminUrl}${isEdit ? 'edit' : 'add'}`, body));
 
   };
 };

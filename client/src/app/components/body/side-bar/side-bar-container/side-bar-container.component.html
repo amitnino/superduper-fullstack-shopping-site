@@ -1,2 +1,3 @@
 <app-welcome-side-bar-container class="full-height side-bar-height" *ngIf="(router.url==='/welcome')"></app-welcome-side-bar-container>
-<app-cart-side-bar-container class="full-height side-bar-height default-flex flex-column flex-start" *ngIf="(router.url!=='/welcome')"></app-cart-side-bar-container>
+<app-cart-side-bar-container class="full-height side-bar-height default-flex flex-column flex-start" *ngIf="( router.url!=='/welcome' && !_userService.user.isAdmin)"></app-cart-side-bar-container>
+<app-admin class="full-height" *ngIf="( router.url!=='/welcome' && _userService.user.isAdmin)"></app-admin>

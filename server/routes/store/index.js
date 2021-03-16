@@ -12,7 +12,7 @@ router.get('/', async ( req, res ) => {
     try {
       
         const storeCategories = await StoreCategory.find();
-        const storeItems = await StoreItem.find().populate(CATEGORYID);
+        const storeItems = await StoreItem.find();
 
         defaultStoreResponse(res, { storeCategories, storeItems });
 
