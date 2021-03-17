@@ -6,7 +6,7 @@
   <a mat-tab-link label="Search"  (click)="toggleSearchBar()">
     <mat-form-field MatFormFieldAppearance="standard" floatLabel='never' *ngIf="activeCategory === 'search'" >
       <mat-label>Search</mat-label>
-      <input matInput (change)="searchStoreItemsByQuery($event.target.value)" type="search" placeholder="Search">
+      <input matInput (keyup)="searchStoreItemsByQuery($event.target.value)" type="search" placeholder="Search">
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
     <mat-icon *ngIf="activeCategory !== 'search'">search</mat-icon>

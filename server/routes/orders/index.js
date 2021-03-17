@@ -57,7 +57,7 @@ router.post('/new', async (req, res) => {
 
         if (!city || !street || !delieveryDate || !creditCard || !cartId) {
 
-            defaultErrorResponse(res, MISSING_INFO)
+            defaultErrorResponse(res, MISSING_INFO);
             return;
 
         };
@@ -81,7 +81,7 @@ router.post('/new', async (req, res) => {
     } catch (error) {
 
         defaultErrorResponse(res, error);
-        console.log(error)
+        console.log(error);
 
         return;
 

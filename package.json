@@ -1,0 +1,13 @@
+{
+    "name": "project",
+    "version": "1.0.0",
+    "scripts": {
+        "startserver": "cd server && nodemon",
+        "startclient": "cd client && ng serve -o",
+        "postinstall": "(cd server && npm install) && (cd ../client && npm install)"
+    },
+    "dependencies": {
+        "client": "file:client",
+        "server": "file:server"
+    }
+}

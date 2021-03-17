@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart/cart.service';
 
@@ -9,15 +10,27 @@ import { CartService } from 'src/app/services/cart/cart.service';
 })
 export class CartSideBarContainerComponent implements OnInit {
 
+  @ViewChild('cartList') cartList: ElementRef;
+
   constructor(
     public router: Router,
     public _cartService: CartService,
+    public formBuilder: FormBuilder,
 
   ) { }
 
+  public searchForm: FormGroup;
+
   ngOnInit(): void {
+    this.searchForm = this.formBuilder.group({
+      search: ['']
+    })
   }
 
+  get searchControl(){
+    return this.searchForm.controls['search'];
+  };
+  
   
 
 };

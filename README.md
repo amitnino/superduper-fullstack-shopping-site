@@ -3,6 +3,20 @@
 A fake brewery website, created as final project as a student
 at John Bryce Training College.
 
+# === Getting Started ===
+## Requirments:
+1. Npm 6.x, Node 12.x.
+2. Angular CLI: (`npm install -g @angular/cli`)
+3. Nodemon: (`npm install -g @angular/cli`)
+
+## Running the project:
+All following commands should be run from the root of the project. 
+1. Run `npm i` to install the project.
+2. Run `npm run startserver` to start the server.
+3. From a seperate terminal, run `npm run startclient` to start the client.
+
+You should now be able to find the brewery site at http://localhost:4200/welcome.
+
 # === SuperDuper Api Documentation ===
 
 Api URL: http://localhost:1000/

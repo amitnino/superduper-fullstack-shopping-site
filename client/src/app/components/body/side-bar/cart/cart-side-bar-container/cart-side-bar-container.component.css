@@ -22,3 +22,7 @@ app-cart-btns{
     width: 100%;
     max-width: 500px;
 }
+.highlight {
+    font-weight: bold;
+    color: green;
+  }

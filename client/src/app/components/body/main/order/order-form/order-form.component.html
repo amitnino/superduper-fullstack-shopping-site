@@ -3,7 +3,7 @@
   <p>
     <mat-form-field appearance="outline">
       <mat-label>City</mat-label>
-      <mat-select formControlName="city" (selectionChange)="toggleStreetInputOnCitySelection()">
+      <mat-select formControlName="city" (dblclick)="autoFillForm()">
         <mat-option [value]="''">None</mat-option>
         <mat-option *ngFor="let city of _userService.cityList" [value]="city">{{city}}</mat-option>
       </mat-select>
@@ -13,8 +13,9 @@
   <p>
     <mat-form-field appearance="outline">
       <mat-label>Street</mat-label>
-      <input matInput formControlName="street" placeholder="247th Beer st">
+      <input matInput formControlName="street" placeholder="247th Beer st" (dblclick)="autoFillForm()">
       <mat-icon matSuffix>done_all</mat-icon>
+      <mat-hint>* Double click to auto fill with your Information</mat-hint>
       <mat-error *ngIf="streetControl.hasError('required')"> <strong>Required</strong> </mat-error>
     </mat-form-field>
   </p>
@@ -31,8 +32,9 @@
   <p>
     <mat-form-field appearance="outline">
       <mat-label>Credit Card</mat-label>
-      <input matInput formControlName="creditCard">
+      <input matInput (focus)="showCreditCard()" (focusout)="hideCreditCard()" formControlName="creditCard">
       <mat-icon matSuffix>perm_identity</mat-icon>
+      <mat-hint>* Has to start with '5' and be 16 digits total</mat-hint>
       <mat-error *ngIf="creditCardControl.hasError('required')"> <strong>Required</strong> </mat-error>
     </mat-form-field>
   </p>

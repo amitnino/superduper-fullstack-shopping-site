@@ -10,14 +10,13 @@ export class SideNavService {
   
   public icons = {cart:'shopping_cart', account:'account_circle', login:'how_to_reg', clear:'clear'};
   
-  
   constructor(
     public router : Router
     ) { }
     
     public isToggleButtonHidden = () => {
       
-      return this.router.url === "/register" || this.router.url === "/order" ;
+      return this.router.url === "/register" ;
       
     };
     
@@ -55,5 +54,5 @@ export class SideNavService {
     
     public currentSidenavToggleButtonIcon: string = this.icons['clear'];
     
-  }
+  };
   

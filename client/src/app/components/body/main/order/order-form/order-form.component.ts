@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { OrderInterface } from 'src/app/interfaces/order/order-interface';
+import creditCardValidator from 'src/app/validators/credit-card.validator';
 
 @Component({
   selector: 'app-order-form',
@@ -19,13 +20,14 @@ export class OrderFormComponent implements OnInit {
   ) { };
 
   public orderForm: FormGroup;
+  public creditCardCurrentValue: string;
 
   ngOnInit(): void { 
     this.orderForm = this.formBuilder.group({
       city: ['', [Validators.required]],
-      street: [{value:'', disabled: true}, [Validators.required]],
+      street: ['', [Validators.required]],
       delieveryDate: ['', [Validators.required]],
-      creditCard: ['', [Validators.required]],
+      creditCard: ['', [Validators.required, creditCardValidator]],
     });
   };
 
@@ -43,19 +45,13 @@ export class OrderFormComponent implements OnInit {
 
   };
 
-  public toggleStreetInputOnCitySelection = (): void => {
-
-    this.cityControl.invalid ? this.streetControl.disable() : this.streetControl.enable();
-  
-  };
-
   public submitOrderButton = ():void => {
 
     const body: OrderInterface = {
 
       ...this.orderForm.value,
       delieveryDate: new Date(this.delieveryDateControl.value._d),
-      creditCard: this.hideCreditCard(this.creditCardControl.value),
+      creditCard: this.hideCreditCard(),
       cartId: this._cartService.cart._id,
       userId: this._userService.user._id
 
@@ -65,9 +61,23 @@ export class OrderFormComponent implements OnInit {
   
   };
 
-  private hideCreditCard = (creditCard: string): string => {
+  public hideCreditCard = (): string => {
 
-    return creditCard.replace(/[0-9](?=([0-9]{4}))/g, '*');
+    if ( !this.creditCardControl.value ) return;
+
+    this.creditCardCurrentValue = this.creditCardControl.value
+
+    const newCreditCardValue = this.creditCardControl.value.replace(/[0-9](?=([0-9]{4}))/g, '*');    
+
+    this.creditCardControl.setValue(newCreditCardValue);
+
+    return newCreditCardValue
+
+  };
+
+  public showCreditCard = (): void => {
+
+    this.creditCardControl.setValue(this.creditCardCurrentValue);
 
   };
 
@@ -82,6 +92,13 @@ export class OrderFormComponent implements OnInit {
   };
   get creditCardControl() {
     return this.orderForm.controls['creditCard'];
+  };
+
+  public autoFillForm = ():void => {
+
+    this.cityControl.setValue(this._userService.user.city);
+    this.streetControl.setValue(this._userService.user.street);
+
   };
 
 };

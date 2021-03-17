@@ -1,0 +1,18 @@
+img{
+    width: 80px;
+}
+
+.container{
+    width: 250px;
+    box-shadow: 20px;
+    padding: 5px;
+}
+
+.content{
+    width: 150px;
+    height: 150px;
+}
+
+p{
+    margin: 0 !important;
+}
