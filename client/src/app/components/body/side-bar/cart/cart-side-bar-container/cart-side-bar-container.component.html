@@ -1,5 +1,5 @@
 <p class="mat-display-2">{{router.url !== '/order' ? 'My Cart' : 'Order Summary'}}</p>
-<form [formGroup]="searchForm">
+<form [formGroup]="searchForm" *ngIf="router.url === '/order'">
   <mat-form-field>
     <mat-label>Search Item</mat-label>
     <input matInput formControlName="search" placeholder="Search Item">

@@ -1,5 +1,5 @@
 <div class="side-bar-height default-flex flex-column flex-between">
-    <p class="mat-display-1">Welcome {{_userService.user?.fullName}}</p>
+    <p class="mat-display-1">Welcome {{_userService.user?.fullName | toTitleCase }}</p>
     
     <!-- In case first time user show this -->
     <div class="new-user-message" *ngIf="!_cartService.cart?.cartItems?.length && !_userService.user?.numberOfOrders && !_userService.user.isAdmin">
@@ -11,7 +11,7 @@
     
     <!-- In Case There isn't an open cart show this -->
     <div class="placed-orders-details" *ngIf="!_cartService.cart?.cartItems?.length && _userService.user?.numberOfOrders">
-        <p class="mat-title">Last order was placed on: {{_userService.user?.lastOrder.delieveryDate | date}}</p>
+        <p class="mat-title">Last order was placed on: {{_userService.user?.lastOrder?.delieveryDate | date}}</p>
         <p class="mat-title">Total number of orders you have placed: {{_userService.user?.numberOfOrders}}</p>
     </div>
     

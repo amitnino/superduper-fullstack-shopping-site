@@ -41,7 +41,7 @@ export class UserApiService {
 
     return user;
 
-  }
+  };
 
   public loginUserToApi = async (body: { username: string, password: string }): Promise<any> => {
 

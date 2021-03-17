@@ -1,4 +1,4 @@
 <div class="default-flex flex-around">
     <button mat-raised-button (click)="_userService.logout()" *ngIf="_userService.isLoggedIn" >Logout</button>
-    <p class="mat-title">{{_userService.user?.fullName || 'Guest'}}</p>
+    <p class="mat-title">{{_userService.user?.fullName || 'Guest' | toTitleCase }}</p>
 </div>

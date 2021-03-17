@@ -14,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const material = [
   MatButtonModule,
@@ -30,6 +31,7 @@ const material = [
   MatTabsModule,
   MatDatepickerModule,
   MatMomentDateModule,
+  MatSnackBarModule
   
 ];
 

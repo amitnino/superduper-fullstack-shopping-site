@@ -59,7 +59,8 @@ module.exports.generateLoginToken = async ( userId, secret ) => {
 
         if ( !isAdmin ){
 
-            loginTokenData.lastOrder = await Order.find({userId: _id}).sort({createdAt: 'desc'}).limit(1);
+            lastOrder = await Order.find({userId: _id}).sort({createdAt: 'desc'}).limit(1);
+            loginTokenData.lastOrder = lastOrder[0];
             loginTokenData.numberOfOrders = await Order.countDocuments({userId: _id});
             
         };

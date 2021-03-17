@@ -1,5 +1,5 @@
 <div class="img-container default-flex flex-center">
-  <img mat-card-imag src="{{cartItem.storeItemId?.picture}}">
+  <img src="{{cartItem.storeItemId?.picture}}">
 </div>
 <div class="item-info default-flex flex-column flex-between">
   <p class="mat-title" *ngIf=" router.url !== '/order'"><strong>{{cartItem.storeItemId.name}}</strong></p>

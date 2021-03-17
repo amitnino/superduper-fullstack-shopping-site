@@ -23,13 +23,20 @@ Api URL: http://localhost:1000/
 
 ------------------------------------------------------------------------
 
-!! Error responses will look like this: { err:true, msg:"Error Description..." }
+!! Error responses will look like this: { err:true, msg:"Error Description...", status?: 500 }
+!! If status = 450, middleware was involved, enter valid loginToken
 
 ------------------------------------------------------------------------
 
 # Authentication :
 
 Handles authorization functions.
+Make sure you have your loginToken in headers.
+Example Below.
+
+- path: /verify/
+- GET:
+- response: {err:boolean, msg?: string, status?: number}
 
 - path: /auth/
 
@@ -39,7 +46,7 @@ Handles authorization functions.
 
         - path: /login
         - POST: body: {username:string, password:string} 
-        - response: {err:boolean, msg:string, refreshToken:string, token:string, cart:{}}
+        - response: {err:boolean, msg:string, loginToken?:string, cart?:{}}
 
     ### Register :
 
@@ -64,10 +71,19 @@ Handles authorization functions.
                 - response: { err:boolean, msg:string }
 
 
+## Stitstics : 
+
+Responds with sum of users, beer types, store items and orders placed.
+
+- path: /statistics
+- GET:
+- response: { err: boolean, masg?:string, statistics:{numberOfUsers, numberOfBeerTypes, numberOfStoreItems, numberOfOrdersPlaced}}
+
+
 ------------------------------------------------------------------------
 
-!! From this point on token and refreshToken must be in headers at all times.
-!! Example: { method: "GET", headers: { authorization: token, refreshToken } }
+!! From this point on loginToken must be in headers at all times.
+!! Example: { method: "GET", headers: { authorization: loginToken } }
 
 ------------------------------------------------------------------------
 

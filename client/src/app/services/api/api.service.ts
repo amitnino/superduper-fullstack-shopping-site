@@ -70,7 +70,9 @@ export class ApiService {
 
         (error: HttpErrorResponse) => {
 
-          reject(error.error);
+          const response: ApiResponseInterface = {...error.error, status: error.status};
+
+          reject(response);
 
         }
       );

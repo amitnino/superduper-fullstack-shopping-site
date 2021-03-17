@@ -7,6 +7,7 @@ import { OrderInterface } from './../order/order-interface';
 export interface ApiResponseInterface {
     err: boolean,
     msg?: string,
+    status: number,
     unAuth?: boolean,
     loginToken?: string,
     cart?: CartInterface,

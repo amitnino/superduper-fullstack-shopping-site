@@ -69,6 +69,7 @@ import { AdminComponent } from './components/body/side-bar/admin/admin.component
 
 // Directives
 import { HighlightDirective } from './directives/highlight.directive';
+import { ToTitleCasePipe } from './pipes/to-title-case.pipe';
 
 @NgModule({
   declarations: [
@@ -103,6 +104,7 @@ import { HighlightDirective } from './directives/highlight.directive';
     SideBarContainerComponent,
     AdminComponent,
     HighlightDirective,
+    ToTitleCasePipe,
   ],
   imports: [
     BrowserModule,
