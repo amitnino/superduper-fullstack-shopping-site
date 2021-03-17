@@ -1,7 +1,6 @@
 button{
     position: absolute;
     z-index: 9999;
-    top: 0px;
+    top: 50px;
     left: 0px;
-
-}
+};

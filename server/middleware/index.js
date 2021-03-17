@@ -5,41 +5,44 @@ const {
 } = require('../routes');
 const { User } = require('../database/schema/users');
 const {
-    LOGIN_TOKEN,
-    REFRESH_TOKEN
+    LOGIN_TOKEN
 } = process.env;
 
 const secret = LOGIN_TOKEN
+const errorMesaage = 'User unauthorized!';
+const status = 450;
 
 module.exports.validateToken = async (req, res, next) => {
 
     jwt.verify(req.headers['authorization'], secret, (err, decoded) => {
 
         if ( err ) {
-    
-            defaultErrorResponse(res, err);
-    
+
+            err.unAuth = true;
+
+            defaultErrorResponse(res, err, errorMesaage, status );
+            
             return;
-    
+            
         };
-
+        
         req.user = decoded;
-    
+        
         next();
-
+        
     });
-
+    
 };
 
 module.exports.validateAdmin = async ( req, res, next ) => {
-
+    
     const user = await User.findOne({ _id: req.user._id });
     
     if ( !req.user.isAdmin || (user.isAdmin !== req.user.isAdmin) ) {
-        
-        const errorMesaage = 'User unauthorized!';
 
-        defaultErrorResponse(res, errorMesaage);
+        const responseBody = {err:true, unAuth: true}
+
+        defaultErrorResponse(res, responseBody , errorMesaage, status );
     
             return;
 

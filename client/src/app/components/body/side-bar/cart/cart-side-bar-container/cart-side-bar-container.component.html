@@ -1,9 +1,11 @@
 <p class="mat-display-2">{{router.url !== '/order' ? 'My Cart' : 'Order Summary'}}</p>
-<!-- <mat-form-field>
-  <mat-label>Search Item</mat-label>
-  <input matInput formControlName="search" placeholder="Search Item">
-  <mat-icon matSuffix>search</mat-icon>
-</mat-form-field> -->
-<app-cart-list class="default-flex flex-column flex-start"></app-cart-list>
+<form [formGroup]="searchForm">
+  <mat-form-field>
+    <mat-label>Search Item</mat-label>
+    <input matInput formControlName="search" placeholder="Search Item">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</form>
+<app-cart-list [query]="searchControl.value"></app-cart-list>
 <app-cart-info class="default-flex flex-between"></app-cart-info>
 <app-cart-btns class="default-flex flex-around" *ngIf="(router.url!=='/order')"></app-cart-btns>

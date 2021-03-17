@@ -60,7 +60,7 @@ export class CartService implements OnInit {
       this.createNewCart();
       return;
       
-    };
+    };    
     
     this.updateCartState(response.cart);
     

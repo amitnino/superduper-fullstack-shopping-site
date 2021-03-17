@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-order-main-container',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderMainContainerComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public _userService: UserService,
+
+  ) { };
 
   ngOnInit(): void {
-  }
+  };
 
-}
+  
+
+};

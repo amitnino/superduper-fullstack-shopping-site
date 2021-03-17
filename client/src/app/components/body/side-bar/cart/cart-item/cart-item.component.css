@@ -29,3 +29,8 @@ img{
     width: 20%;
     align-items: flex-start;
 }
+
+mark{
+    background-color: yellow !important;
+    font-weight: bold !important;
+}

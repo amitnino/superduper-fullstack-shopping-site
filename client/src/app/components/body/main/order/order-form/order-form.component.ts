@@ -16,19 +16,21 @@ export class OrderFormComponent implements OnInit {
     public formBuilder: FormBuilder,
     public _userService: UserService,
     public _cartService: CartService,
-
-  ) { };
+  ) {
+    
+  };
 
   public orderForm: FormGroup;
   public creditCardCurrentValue: string;
 
-  ngOnInit(): void { 
+  ngOnInit(){ 
+    this._userService.getUnavailableDates();
     this.orderForm = this.formBuilder.group({
       city: ['', [Validators.required]],
       street: ['', [Validators.required]],
       delieveryDate: ['', [Validators.required]],
       creditCard: ['', [Validators.required, creditCardValidator]],
-    });
+    });    
   };
 
   public disabledDatesFilter = (date: any | null): boolean => {
@@ -37,9 +39,13 @@ export class OrderFormComponent implements OnInit {
     
     if ( date._d.getTime() < Date.now() ) return false;
 
-    if ( date._d.getDate().toString() === new Date(1616277600000).getDate().toString() ) return false;
+    for ( let i=0; i < this._userService.unAvailableDates.length; i++){
 
-    // console.log(date._d.getDate().toString()); // used for debugging
+      const dateToCheck = new Date(parseInt(this._userService.unAvailableDates[i])).getDate().toString();
+      
+      if ( date._d.getDate().toString() === dateToCheck ) return false;
+      
+    };
 
     return true;
 

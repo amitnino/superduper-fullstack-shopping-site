@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-  <mat-sidenav mode="side" *ngIf="!_sn.isSideNavHidden()" [(opened)]="_sn.opened">
+  <mat-sidenav mode="{{_sideNavService.isSideNavInSideMode ? 'side' : 'over'}}" *ngIf="!_sideNavService.isSideNavHidden()" [(opened)]="_sideNavService.opened">
     <app-side-bar-container class="max-width defalt-flex flex-column flex-center" ></app-side-bar-container>
   </mat-sidenav>
   <mat-sidenav-content>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartItemInterface } from 'src/app/interfaces/cart/cart-item-interface';
 import { CartService } from 'src/app/services/cart/cart.service';
@@ -13,6 +13,9 @@ export class CartItemComponent implements OnInit {
   @Input()
   cartItem: CartItemInterface;
 
+  @Input()
+  public query: string;
+
   public newCartItemAmount: number
   public editAmountOpen: boolean = false;
 
@@ -20,12 +23,12 @@ export class CartItemComponent implements OnInit {
     public _cartService: CartService,
     public router: Router
 
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.newCartItemAmount = this.cartItem.amount;
   };
-
+  
   public allowEditAmount = (): void => {
 
     this.editAmountOpen = true;
@@ -35,7 +38,7 @@ export class CartItemComponent implements OnInit {
   public applyNewItemAmountButton = (): void => {
 
     const body = {
-      cartItemId: this.cartItem._id, 
+      cartItemId: this.cartItem._id,
       amount: this.newCartItemAmount
     };
 
@@ -44,7 +47,7 @@ export class CartItemComponent implements OnInit {
 
   };
 
-  public changeItemAmountButton = (addMore:boolean = false): void => {
+  public changeItemAmountButton = (addMore: boolean = false): void => {
 
     if (addMore) {
       this.newCartItemAmount += 1;

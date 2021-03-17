@@ -1,15 +1,18 @@
 <div class="img-container default-flex flex-center">
-  <img src="{{cartItem.storeItemId.picture}}" *ngIf="cartItem.storeItemId?.picture">
+  <img mat-card-imag src="{{cartItem.storeItemId?.picture}}">
 </div>
 <div class="item-info default-flex flex-column flex-between">
-  <p><strong>{{cartItem.storeItemId.name}}</strong></p>
+  <p class="mat-title" *ngIf=" router.url !== '/order'"><strong>{{cartItem.storeItemId.name}}</strong></p>
+  <p [appHighlight]='query' class="mat-title" *ngIf=" router.url === '/order'"><strong>{{cartItem.storeItemId.name}}</strong></p>
   <div class="item-info-single default-flex flex-between max-width mt-2">
     <p><strong>Price per</strong></p>
-    <p><strong>${{cartItem.storeItemId.price}}</strong></p>
+    <p  *ngIf=" router.url !== '/order'"><strong>${{cartItem.storeItemId.price}}</strong></p>
+    <p [appHighlight]='query'  *ngIf=" router.url === '/order'"><strong>${{cartItem.storeItemId.price}}</strong></p>
   </div>
   <div class="item-info-single default-flex flex-between max-width">
     <p><strong>Amount</strong></p>
-    <p><strong>x{{newCartItemAmount}}</strong></p>
+    <p *ngIf=" router.url !== '/order'"><strong>x{{newCartItemAmount}}</strong></p>
+    <p [appHighlight]='query'  *ngIf=" router.url === '/order'"><strong>x{{newCartItemAmount}}</strong></p>
   </div>
 </div>
 <div class="item-btns default-flex flex-column flex-around mt-2" *ngIf="router.url !== '/order'">

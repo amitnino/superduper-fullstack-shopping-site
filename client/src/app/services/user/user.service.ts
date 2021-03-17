@@ -37,6 +37,9 @@ export class UserService implements OnInit {
   ) { }
 
   public isLoggedIn: boolean = false;
+  public recieptReady: boolean = false;
+  public order: OrderInterface;
+  public unAvailableDates: string[];
   public user: UserInterface;
   public initialUser: UserInterface = {
 
@@ -51,7 +54,6 @@ export class UserService implements OnInit {
 
   };
 
-
   ngOnInit(): void {
   };
 
@@ -64,11 +66,21 @@ export class UserService implements OnInit {
 
   };
 
-  public getUserFromLocalStorage = (): void => {
+  public getUserFromLocalStorage = async (): Promise<void> => {
 
     if (!localStorage.getItem('token')) {
 
       this.logout();
+      return;
+      
+    };
+    
+    const response = await this.verifyUserToken();
+    
+    if (response.err) {
+      
+      this.logout();
+      return;
 
     };
 
@@ -85,12 +97,18 @@ export class UserService implements OnInit {
     if (response.err) return console.log(response.msg);
     // handleError() TODO
 
-    this.user = {...this._userApiService.getUserFromToken(response.loginToken)}
+    this.user = { ...this._userApiService.getUserFromToken(response.loginToken) }
 
     this._cartService.updateCartState(response.cart);
 
     this.isLoggedIn = true;
 
+  };
+
+  public verifyUserToken = async (): Promise<any> => {
+
+    return await this._userApiService.verifyUserTokenToApi();
+    
   };
 
   public validateRegisterForm = async (body: { israeliId: string, username: string }) => {
@@ -108,15 +126,39 @@ export class UserService implements OnInit {
   public placeOrder = async (body: OrderInterface): Promise<void> => {
 
     const response = await this._userApiService.placeOrderToApi(body);
+    
+    if ( response.err ) {
 
-    this.user = {...this._userApiService.getUserFromToken(response.loginToken)};
+      console.log(response.msg);
+      return;
+
+    };
+
+    this.user = { ...this._userApiService.getUserFromToken(response.loginToken) };
 
     this._cartService.updateCartState(this._cartService.initialCart);
 
     this._statisticsApiService.getStatistics();
 
-    this.router.navigateByUrl('/welcome');
+    this.order = { ...response.order };
 
+    this.recieptReady = true;
+
+  };
+
+  public getUnavailableDates = async (): Promise<any> => {
+
+    const response = await this._userApiService.getUnavailableDatesFromApi();
+
+    if ( response.err ) {
+
+      console.log(response.msg);
+      return;
+
+    };
+
+    this.unAvailableDates = [...response.unAvailableDates];
+    
   };
 
 };

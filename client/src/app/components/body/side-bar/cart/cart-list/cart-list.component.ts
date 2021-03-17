@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
@@ -7,6 +7,9 @@ import { CartService } from 'src/app/services/cart/cart.service';
   styleUrls: ['./cart-list.component.css']
 })
 export class CartListComponent implements OnInit {
+
+  @Input()
+  public query: string;
 
   constructor(
     public _cartService: CartService,

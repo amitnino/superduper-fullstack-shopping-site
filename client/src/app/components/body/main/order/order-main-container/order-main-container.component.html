@@ -1,2 +1,2 @@
-<app-order-form></app-order-form>
-<app-download></app-download>
+<app-order-form *ngIf="!_userService.recieptReady" ></app-order-form>
+<app-download *ngIf="_userService.recieptReady"></app-download>

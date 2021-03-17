@@ -66,7 +66,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { AdminComponent } from './components/body/side-bar/admin/admin.component';
-import { HighlightHtmlDirective } from './directives/highlight-html.directive';
+
+// Directives
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -100,7 +102,7 @@ import { HighlightHtmlDirective } from './directives/highlight-html.directive';
     WelcomeSideBarContainerComponent,
     SideBarContainerComponent,
     AdminComponent,
-    HighlightHtmlDirective,
+    HighlightDirective,
   ],
   imports: [
     BrowserModule,

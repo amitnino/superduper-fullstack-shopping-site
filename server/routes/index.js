@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken');
 
-module.exports.defaultErrorResponse = ( res, msg, error ) => {
+module.exports.defaultErrorResponse = ( res, msg, error, status= 500 ) => {
 
     const responseMessage = '[SERVER] : ' + msg ? msg : error;
 
-    return res.status(500).json({err:true, msg:'[SERVER] '+ responseMessage });
+    return res.status(status).json({err:true, msg:'[SERVER] '+ responseMessage });
 
 };
 
@@ -65,11 +65,5 @@ module.exports.generateLoginToken = async ( userId, secret ) => {
         };
 
     return jwt.sign(loginTokenData, secret, { expiresIn: '1h' });
-
-};
-
-module.exports.generateRefreshToken = ( payload, secret ) => {
-
-    return jwt.sign(payload, secret, { expiresIn: '1 days' });
 
 };

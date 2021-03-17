@@ -11,16 +11,13 @@ const {
 } = require('../../database/schema/orders');
 const {
     defaultErrorResponse,
-    generateLoginToken,
-    // generateRefreshToken
+    generateLoginToken
 } = require('../');
 const {
     SALT_ROUNDS,
     MISSING_INFO,
     WRONG_INFO,
-    USERID,
     LOGIN_TOKEN,
-    // REFRESH_TOKEN
 } = process.env;
 
 router.post('/register', async (req, res) => {
@@ -154,14 +151,12 @@ router.post('/login', async (req, res) => {
         };
         
         const loginToken = await generateLoginToken(user._id, LOGIN_TOKEN);
-        // const refreshToken = generateRefreshToken({username}, REFRESH_TOKEN);
         
         const response = {
             
             err: false,
             msg: `Welcome, ${user.firstName} ${user.lastName}`,
             loginToken,
-            // refreshToken,
             
         };
 

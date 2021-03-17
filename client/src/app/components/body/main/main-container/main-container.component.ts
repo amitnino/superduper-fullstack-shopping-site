@@ -10,7 +10,7 @@ import { SideNavService } from 'src/app/services/side-nav/side-nav.service';
 export class MainContainerComponent implements OnInit {
 
   constructor(
-    public _sn: SideNavService,
+    public _sideNavService: SideNavService,
     public router: Router
   ) { };
 

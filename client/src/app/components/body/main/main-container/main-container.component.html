@@ -1,4 +1,4 @@
-<button mat-icon-button *ngIf="!_sn.isToggleButtonHidden()" (click)="_sn.toggleSideNav()">
-  <mat-icon>{{_sn.currentSidenavToggleButtonIcon}}</mat-icon>
+<button mat-icon-button *ngIf="!_sideNavService.isToggleButtonHidden()" (click)="_sideNavService.toggleSideNav()">
+  <mat-icon>{{_sideNavService.currentSidenavToggleButtonIcon}}</mat-icon>
 </button>
 <router-outlet></router-outlet>

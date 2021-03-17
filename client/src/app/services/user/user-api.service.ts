@@ -69,5 +69,18 @@ export class UserApiService {
 
     return await this._api.defaultApiResponseHandler(this._api.post('orders/new', body));
 
-  }
+  };
+
+  public getUnavailableDatesFromApi = async (): Promise<any> => {
+
+    return await this._api.defaultApiResponseHandler(this._api.get('orders/dates'));
+
+  };
+
+  public verifyUserTokenToApi = async (): Promise<any> => {
+
+    return await this._api.defaultApiResponseHandler(this._api.get('verify'))
+    
+  };
+
 };

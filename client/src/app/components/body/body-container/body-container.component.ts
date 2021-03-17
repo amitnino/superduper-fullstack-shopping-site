@@ -11,7 +11,7 @@ export class BodyContainerComponent implements OnInit {
 
   constructor(
     public router : Router,
-    public _sn: SideNavService
+    public _sideNavService: SideNavService
   ) { };
 
   ngOnInit(): void {
