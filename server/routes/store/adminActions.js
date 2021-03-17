@@ -52,12 +52,6 @@ router.post('/add', async ( req, res ) => {
 
 router.post('/edit', async ( req, res ) => {
 
-    // 2. Edit existing Item in store database:
-    
-    // - path: /edit
-    // - PUT: body: { storeItemId: name:string, categoryId:string, price:number, picture:string }
-    // - response: { err:boolean, msg:string, storeItems:[{}] } // Api server send all store items in response
-
     try {
 
     const { _id, name, categoryId, price, picture } = req.body;

@@ -31,12 +31,6 @@ Api URL: http://localhost:1000/
 # Authentication :
 
 Handles authorization functions.
-Make sure you have your loginToken in headers.
-Example Below.
-
-- path: /verify/
-- GET:
-- response: {err:boolean, msg?: string, status?: number}
 
 - path: /auth/
 
@@ -87,6 +81,15 @@ Responds with sum of users, beer types, store items and orders placed.
 
 ------------------------------------------------------------------------
 
+## Verify Token
+
+    Make sure you have your loginToken in headers.
+    Example Below.
+
+    - path: /verify
+    - GET:
+    - response: {err:boolean, msg?: string, status?: number}
+
 # Store Items :
 
 Handles request for store items related functions such as adding item to cart, adding item to store database, complete purchase etc.
@@ -132,7 +135,7 @@ Handles request for store items related functions such as adding item to cart, a
             2. Edit existing Item in store database:
 
                 - path: /edit
-                - PUT: body: { storeItemId:string name:string, categoryId:string, price:number, path:string }
+                - PUT: body: { _id:string name:string, categoryId:string, price:number, picture:string }
                 - response: { err:boolean, msg:string, storeItems:[{}] } // Api sends all store items in response
 
 
@@ -143,7 +146,7 @@ Once user logs in, if there is an open cart, the Api will add the cart to the re
 ! All requests in this path return in response the new "state" of the cart from database.
 
 
-- path: /cart/
+- path: /carts/
 
 		1. Create new cart.
 
@@ -181,27 +184,30 @@ Once user logs in, if there is an open cart, the Api will add the cart to the re
 		- DELETE: 
 		- response: { err:boolean, msg:string, cart:[] }
 
-### !!TODO!! Order :
+# Order :
 
 Once the user has finished placing its order, a new order document is created
 in database and is set { isActive: false }.
 
 - path: /order
 
-	    1. Create a new order ( sets cart to { isActive: false } ) :
-
-		- path: /new
-		- POST: body: { cartId:string, city:string, street:string , delieveryDate:date, creditCard:number }
-		- response: { err:boolean, msg:string, order:{} }
-
-	    2. Get all orders:
+	    2. Get all user's orders:
 
 		- path: /
 		- GET:
 		- response: { err:boolean, msg:string, orders:[{}] }
 
-	    3. Get Orders By User id:
+	    1. Create a new order ( sets cart to { isActive: false } ) :
 
-		- path: /userId/:userId
-		- GET: params: userId
-		- response: { err:boolean, msg:string, orders:[{}] }
+		- path: /new
+		- POST: body: { cartId:string, city:string, street:string , delieveryDate:date, creditCard:number }
+		- response: { err:boolean, msg:string, order:{}, loginToken: string }
+
+
+	    3. Get unavailable dates for delievery:
+
+        This returns an array of millisecond strings
+
+		- path: /dates
+		- GET: 
+		- response: { err:boolean, msg:string, unAvailableDates: strings[] }
