@@ -7,7 +7,7 @@ at John Bryce Training College.
 ## Requirments:
 1. Npm 6.x, Node 12.x.
 2. Angular CLI: (`npm install -g @angular/cli`)
-3. Nodemon: (`npm install -g @angular/cli`)
+3. Nodemon: (`npm i nodemon`)
 
 ## Running the project:
 All following commands should be run from the root of the project. 
