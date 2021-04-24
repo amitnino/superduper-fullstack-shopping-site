@@ -1,2 +1,2 @@
 <button mat-raised-button color="warn" (click)="resetCart()">Reset</button>
-<button mat-raised-button color="primary" (click)="submitOrder()">Place Order</button>
+<button mat-raised-button color="primary" [disabled]="!_cartService.cart?.cartItems.length" (click)="submitOrder()">Place Order</button>

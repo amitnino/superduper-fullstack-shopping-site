@@ -5,8 +5,8 @@ import { CartService } from '../cart/cart.service';
 import { OrderInterface } from 'src/app/interfaces/order/order-interface';
 import { StatisticsApiService } from '../statistics/statistics-api.service';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApiResponseInterface } from 'src/app/interfaces/api/api-response-interface';
+import { SnackBarService } from '../snackbar/snack-bar.service';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +35,7 @@ export class UserService implements OnInit {
     private _cartService: CartService,
     private _statisticsApiService: StatisticsApiService,
     private router: Router,
-    private snackBar: MatSnackBar,
+    private _snackbarService: SnackBarService,
 
   ) { }
 
@@ -61,11 +61,9 @@ export class UserService implements OnInit {
     badToken: 'Whoops, Bad Token, Login again!',
     wrongInfo: 'Username or Password are invalid',
     welcome: "You're In!",
-    error: 'Uh oh! Something Went Wrong!'
+    error: 'Uh oh! Something Went Wrong!',
 
   };
-
-  private action: string = 'dismiss';
 
   ngOnInit(): void {
   };
@@ -76,15 +74,12 @@ export class UserService implements OnInit {
     this.isLoggedIn = false;
     localStorage.removeItem('token');
     this.router.navigateByUrl('/welcome');
-    this.snackBar.open(this.snackBarMessages.badToken, this.action)
     
   };
 
   public getUserFromLocalStorage = async (): Promise<void> => {
 
     if (!localStorage.getItem('token')) {
-
-      this.snackBar.open(this.snackBarMessages.badToken, this.action)
       this.logout();
       return;
       
@@ -122,10 +117,10 @@ export class UserService implements OnInit {
 
     if (response.err){  
       
-      this.snackBar.open(this.snackBarMessages.wrongInfo, this.action);
+      this._snackbarService.openSnackBar(this.snackBarMessages.wrongInfo);
       return;
-      
-    }
+
+    };
     // handleError() TODO
     
     this.user = { ...this._userApiService.getUserFromToken(response.loginToken) }
@@ -134,7 +129,7 @@ export class UserService implements OnInit {
     
     this.isLoggedIn = true;
     
-    this.snackBar.open(this.snackBarMessages.welcome, this.action);
+    this._snackbarService.openSnackBar(this.snackBarMessages.welcome);
     
   };
   
@@ -162,7 +157,7 @@ export class UserService implements OnInit {
     
     if (response.err) {
       
-      this.snackBar.open(this.snackBarMessages.error, this.action);
+      this._snackbarService.openSnackBar(this.snackBarMessages.error);
       return;
       
     };

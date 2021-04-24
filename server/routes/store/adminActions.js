@@ -64,16 +64,6 @@ router.post('/edit', async ( req, res ) => {
 
     };
 
-    const queryResult = await StoreItem.exists({ name });
-
-    if ( queryResult ) {
-
-        defaultErrorResponse(res, ITEM_NAME_TAKEN);
-
-        return;
-
-    };
-
     await StoreItem.findOneAndUpdate({ _id: toObjectId(_id) }, {name, categoryId, price, picture});
 
     const storeItems = await StoreItem.find();

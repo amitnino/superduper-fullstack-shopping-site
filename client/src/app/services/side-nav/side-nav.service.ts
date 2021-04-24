@@ -37,13 +37,6 @@ export class SideNavService {
       
     };
     
-    // TODO: create toggle function for sidenav mode
-    // when  screen is small, sidenav should be over main component not adjsent
-    // function { if screen size is small return 'over' else return 'side' }
-    
-    // TODO: create a button that is shown only when screen is small
-    // button controls the open/close function of the sidenav
-    
     public getSidenavToggleButtonIcon = (currentUrl: string) => {
 
       switch (currentUrl) {

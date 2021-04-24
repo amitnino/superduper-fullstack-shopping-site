@@ -118,7 +118,8 @@ import { ToTitleCasePipe } from './pipes/to-title-case.pipe';
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-il' },
-    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true }},
+
   ],
   bootstrap: [AppComponent]
 })

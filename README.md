@@ -17,6 +17,13 @@ All following commands should be run from the root of the project.
 
 You should now be able to find the brewery site at http://localhost:4200/welcome.
 
+# Yossi
+1. Place .env file in server folder.
+2. For admin rights:
+    - username: admin@superduper.com
+    - password: password
+
+
 # === SuperDuper Api Documentation ===
 
 Api URL: http://localhost:1000/

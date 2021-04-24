@@ -3,7 +3,6 @@ import { AdminStoreService } from './../../../../services/store/admin-store.serv
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StoreService } from 'src/app/services/store/store.service';
 import { StoreItemInterface } from 'src/app/interfaces/store/store-item-interface';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
@@ -81,8 +80,6 @@ export class AdminComponent implements OnInit {
   };
 
   public submitForm = async (): Promise<void> => {
-
-    console.log(this.adminForm.value);
 
     if ( this.adminForm.invalid ) return ;
 

@@ -1,9 +1,9 @@
 import { Injectable, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { CartApiBodyRequestInterface } from 'src/app/interfaces/cart/cart-api-body-request-interface';
 import { CartInterface } from 'src/app/interfaces/cart/cart-interface';
 import { CartApiService } from './cart-api.service';
 import { ApiResponseInterface } from 'src/app/interfaces/api/api-response-interface';
+import { SnackBarService } from '../snackbar/snack-bar.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class CartService implements OnInit {
 
   constructor(
     private _cartApiService: CartApiService,
-    private snackBar: MatSnackBar,
+    private _snackbarService: SnackBarService,
 
   ) { }
 
@@ -20,8 +20,6 @@ export class CartService implements OnInit {
   }
   
   public cart: CartInterface;
-
-  public action: string = 'Dismiss';
 
   public snackBarMessages = {
     add: 'Item Added to cart Successfully',
@@ -54,13 +52,12 @@ export class CartService implements OnInit {
 
     if ( response.err ){
 
-      this.snackBar.open(this.snackBarMessages.fail, this.action);
+      this._snackbarService.openSnackBar(this.snackBarMessages.fail);
       return;
     } 
     
-    if ( this.snackBarMessages ) this.snackBar.open(this.snackBarMessages[`${snackBarMessageName}`], this.action);
+    if ( this.snackBarMessages ) this._snackbarService.openSnackBar(this.snackBarMessages[`${snackBarMessageName}`]);
 
-    
     this.updateCartState(response.cart);
     
   };

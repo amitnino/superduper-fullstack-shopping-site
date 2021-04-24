@@ -35,6 +35,8 @@ export class StoreItemComponent implements OnInit {
 
     this._cartService.addItemToCart(body);
 
+    this.amount = 1;
+
   };
 
   public changeItemAmountButton = (addMore:boolean = false): void => {
