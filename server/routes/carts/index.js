@@ -70,10 +70,24 @@ router.post('/add', async (req, res) => {
 
         const cart = await getCartByUserId(req.user._id);
 
-        await cart.cartItems.push({
-            storeItemId,
-            amount
-        });
+        const cartItemExists = await cart.cartItems.filter(cartItem => cartItem.storeItemId._id == storeItemId);
+
+        if (cartItemExists.length) {
+
+            const cartItem = await cart.cartItems.id(cartItemExists[0]._id);
+
+            cartItem.amount += amount;
+            
+            console.log(cartItem);
+
+        } else {
+
+            await cart.cartItems.push({
+                storeItemId,
+                amount
+            });
+
+        };
 
         await cart.save();
 

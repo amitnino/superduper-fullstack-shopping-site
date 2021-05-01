@@ -3,7 +3,7 @@ import { StoreApiService } from 'src/app/services/store/store-api.service';
 import { StoreCategoryInterface } from 'src/app/interfaces/store/store-category-interface';
 import { StoreItemInterface } from 'src/app/interfaces/store/store-item-interface';
 import { StoreApiResponseInterface } from 'src/app/interfaces/store/store-api-response-interface';
-import { SnackBarService } from '../snackbar/snack-bar.service';
+
 
 @Injectable({
   providedIn: 'root'
